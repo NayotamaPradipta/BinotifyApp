@@ -11,3 +11,8 @@
 - User lists
 <br> <br>
 Listen to the best music **without ads** in **Binotify**!
+
+### Installation Requirements 
+To run this program, you are advised to install XAMPP, and clone this repository in the ```/xampp/htdocs``` folder. <br>
+You can run the program by accessing ```http://localhost:<port>/BinotifyApp``` (Change ```<port>``` with the Apache port value in your XAMPP control panel) in your browser.
+
