@@ -7,6 +7,6 @@
 
 </head>
 <body>
-    <h1>Binotify App</h1>
+    <h1>Binotify</h1>
 </body>
 </html>
