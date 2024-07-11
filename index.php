@@ -8,9 +8,10 @@
 
 </head>
 <body>
-    <div class="header"> 
-        <h1>Binotify</h1>
-        <a href="login.php" class="login-button">Login</a>
+    <div id="nav-container">
+        <?php
+            include "navbar.php";
+        ?>
     </div>
 </body>
 </html>
