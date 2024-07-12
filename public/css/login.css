@@ -1,10 +1,19 @@
+@font-face {
+    font-family: 'spotify-circular-l';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'spotify-circular-b';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
     background-color: #f2f2f2;
 }
 
@@ -33,9 +42,17 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 8 px;
-    border: 1px solid #ccc;
+    padding: 8px;
+    border: 1px solid #000000;
     border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 button {
@@ -46,8 +63,21 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 2vh;
 }
 
 button:hover {
     background-color: #45a049;
+}
+
+.input-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+}
+
+.input-register p {
+
+    margin-right: 0.5vw;
 }
