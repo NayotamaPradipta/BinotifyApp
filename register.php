@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
-    <link rel="stylesheet" href="register-styles.css">
+    <link rel="stylesheet" href="public/css/register.css">
 </head>
 <body>
     <div class="container">
@@ -26,6 +26,10 @@
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
                 <span id="message" style="color: red;"></span>
+            </div>
+            <div class="back-login">
+                <p>Already have an account?</p>
+                <a href="Login.php">Login</a>
             </div>
             <button type="submit">Register</button>
         </form>

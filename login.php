@@ -38,7 +38,7 @@
                 1. Create register.php and change href
                 2. Create a link from login to home page
                 -->
-                <a href="#">Register</a> 
+                <a href="register.php">Register</a> 
             </div>
         </form>
     </div>

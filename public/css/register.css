@@ -1,5 +1,14 @@
+@font-face {
+    font-family: 'spotify-circular-l';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'spotify-circular-b';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'spotify-circular-b',Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
@@ -48,9 +57,20 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 button:hover {
     background-color: #4cae4c;
+}
+.back-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+}
+
+.back-login p {
+
+    margin-right: 0.5vw;
 }
