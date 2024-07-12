@@ -14,7 +14,7 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'spotify-circular-b', Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: black;
 }
 
 .login-container {
@@ -58,16 +58,17 @@ body {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #1DB954;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 2vh;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #1DB954;
 }
 
 .input-register {
