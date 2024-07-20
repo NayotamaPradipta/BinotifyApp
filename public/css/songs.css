@@ -7,6 +7,11 @@
     src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
 }
 
+html, body {
+    background-color: #212121;
+}
+
+
 .song {
     border: 1px solid #ddd;
     margin: 2vh;
@@ -27,6 +32,7 @@
     font-size: 3em;
     margin: 0;
     font-family: 'spotify-circular-b';
+    color: #FFFFFF;
 }
 
 .song-details {
@@ -35,6 +41,7 @@
     gap: 5px;
     font-family: 'spotify-circular-l';
     font-size: 1.5em;
+    color: #FFFFFF;
 }
 
 @media (max-width: 768px) {
