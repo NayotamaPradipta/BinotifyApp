@@ -7,10 +7,16 @@
     while ($row = $stmt->fetch()){
         echo '<div class="song">';
         echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Album cover">';
+        echo '<div>';
         echo '<h2>' . htmlspecialchars($row['judul']) . '</h2>';
-        echo '<p>Singer: ' . htmlspecialchars($row['penyanyi']) . '</p>';
-        echo '<p>Year Published: ' . htmlspecialchars($row['tanggal_terbit']) . '</p>';
-        echo '<p>Genre: ' . htmlspecialchars($row['genre']) . '</p>';
+        echo '<div class="song-details">';
+        echo '<span>' . htmlspecialchars($row['penyanyi']) . '</span>';
+        echo '<span>&#8226;</span>'; 
+        echo '<span>' . htmlspecialchars(substr($row['tanggal_terbit'], 0, 4)) . '</span>';
+        echo '<span>&#8226;</span>'; 
+        echo '<span>' . htmlspecialchars($row['genre']) . '</span>';
+        echo '</div>';
+        echo '</div>';
         echo '</div>';
     }
 ?>
