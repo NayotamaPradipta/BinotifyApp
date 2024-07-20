@@ -13,5 +13,10 @@
             include "navbar.php";
         ?>
     </div>
+    <div id="songs-container">
+        <?php
+            include "songs.php";
+        ?>  
+    </div>
 </body>
 </html>
