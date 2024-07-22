@@ -1,7 +1,3 @@
-<head>
-    <link rel="stylesheet" href="./public/css/navbar.css">
-</head>
-
 <?php
     $isLogged = false;
 ?>
