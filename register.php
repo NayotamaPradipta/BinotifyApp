@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="public/css/register.css">
 </head>
 <body>
+<?php include 'navbar.php'; ?>
+<div class="wrapper">
     <div class="container">
         <h2>Register</h2>
         <form id="registrationForm" action="/register" method="post">
