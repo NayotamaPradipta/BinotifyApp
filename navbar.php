@@ -21,7 +21,7 @@
         </div>
     </a> 
     <?php
-        if (!$isLogged){
+        if (!$isLogged && basename($_SERVER['REQUEST_URI'])!="login.php"){
             echo '
                 <div id="login-button">
                     <a href="login.php" class="login-button">
