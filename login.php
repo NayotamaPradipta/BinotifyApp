@@ -6,8 +6,10 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="public/css/login.css">
 </head>
-<body>
 
+<body>
+<?php include 'navbar.php'; ?>
+<div class="wrapper">
     <div class="login-container">
         <h2>Login</h2>
         <form action="login.php" method="post">
@@ -41,6 +43,7 @@
                 <a href="register.php">Register</a> 
             </div>
         </form>
+</div>
     </div>
     
 </body>
