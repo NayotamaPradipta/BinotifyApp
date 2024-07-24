@@ -25,8 +25,8 @@
     <title><?php echo htmlspecialchars($row['judul']); ?></title>
 </head>
 <body>
-    <php 
-        include "navbar.php";
+    <?php 
+        include 'navbar.php';
     ?>
     <div class="song-detail">
         <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Album cover">
