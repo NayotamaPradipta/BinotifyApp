@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Navbar</title>
+    <link rel="stylesheet" href="./public/css/navbar.css">
+</head>
+
 <?php
     $isLogged = false;
 ?>
@@ -11,7 +20,7 @@
         </div>
     </a> 
     <?php
-        if (!$isLogged){
+        if (!$isLogged && basename($_SERVER['REQUEST_URI'])!="login.php"){
             echo '
                 <div id="login-button">
                     <a href="login.php" class="login-button">
