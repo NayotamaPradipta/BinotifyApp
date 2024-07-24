@@ -9,6 +9,8 @@
 
 html, body {
     background-color: #212121;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -20,6 +22,7 @@ html, body {
     display: flex;
     align-items: center;
     gap: 10px;
+    background-color: #333333;
 }
 
 .song img {
@@ -34,6 +37,16 @@ html, body {
     font-family: 'spotify-circular-b';
     color: #FFFFFF;
 }
+
+.song a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
 
 .song-details {
     display: flex;
