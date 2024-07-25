@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'spotify-circular-l';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'spotify-circular-b';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
+}
+
+html, body {
+    background-color: #212121;
+}
+
+
+.album {
+    border: 1px solid #ddd;
+    margin: 2vh;
+    padding: 1vh;
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.album img {
+    width: 10%;
+    height: auto;
+    border-radius: 2em;
+}
+
+.album h2 {
+    font-size: 3em;
+    margin: 0;
+    font-family: 'spotify-circular-b';
+    color: #FFFFFF;
+}
+
+.album-details {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'spotify-circular-l';
+    font-size: 1.5em;
+    color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+    .album img {
+        width: 20%;
+    }
+    .album h2 {
+        font-size: 2em;
+    }
+    .album-details {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .album img {
+        width: 25%;
+    }
+    .album h2 {
+        font-size: 1.5em;
+    }
+    .album-details {
+        font-size: 1em;
+    }
+}
+
