@@ -40,7 +40,7 @@
     ?>
     <div class="song-detail-wrapper">
         <div class="song-detail">
-            <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Album cover">
+            <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Song cover">
             <div>
                 <h2><?php echo htmlspecialchars($row['judul']); ?></h2>
                 <div class="album-name">
