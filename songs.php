@@ -6,7 +6,7 @@
 
     while ($row = $stmt->fetch()){
         echo '<div class="song">';
-        echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Album cover">';
+        echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Song cover">';
         echo '<div>';
         echo '<h2>' . htmlspecialchars($row['judul']) . '</h2>';
         echo '<div class="song-details">';
