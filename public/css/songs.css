@@ -9,12 +9,24 @@
     format("woff2");
 }
 
+html, body {
+    background-color: #212121;
+    margin: 0;
+    padding: 0;
 html,
 body {
   background-color: #212121;
 }
 
 .song {
+    border: 1px solid #ddd;
+    margin: 2vh;
+    padding: 1vh;
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #333333;
   border: 1px solid #ddd;
   margin: 2vh;
   padding: 1vh;
