@@ -66,6 +66,14 @@ html, body {
     font-family: 'spotify-circular-b';
 }
 
+.album-name a { 
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
+    font-size: 1.3em;
+    color: #1DB954 /* Spotify Color Palette*/
+}
+
 .song-details {
     display: flex;
     justify-content: center;
