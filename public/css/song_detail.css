@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'spotify-circular-l';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'spotify-circular-b';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
+}
+
+html, body {
+    background-color: #212121;
+    margin: 0;
+    padding: 0;
+    font-family: 'spotify-circular-l', Arial, sans-serif;
+    color: #FFFFFF;
+    height: 100%;
+}
+
+.navbar {
+    text-align: center;
+    font-family: 'spotify-circular-b';
+    position: fixed; 
+    width: 100%;
+    z-index: 1;
+}
+
+.navbar a {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 0 1em;
+}
+
+.song-detail-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.song-detail {
+    display: flex;
+    align-items: center;
+    padding: 2em;
+    gap: 2em;
+    max-width: 900px;
+    margin: auto;
+    background-color: #333333;
+    border-radius: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.song-detail img {
+    width: 25%;
+    height: auto;
+    border-radius: 1em;
+}
+
+.song-detail div {
+    flex-grow: 1;
+}
+
+.song-detail h2 {
+    font-size: 3em;
+    margin: 0;
+    font-family: 'spotify-circular-b';
+}
+
+.song-details {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.2em;
+    margin: 1em 0;
+}
+
+audio {
+    width: 100%;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .song-detail {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .song-detail img {
+        width: 100%;
+    }
+
+    .song-detail h2 {
+        font-size: 2em;
+    }
+
+    .song-details {
+        font-size: 1em;
+    }
+}
