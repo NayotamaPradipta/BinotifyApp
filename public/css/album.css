@@ -14,7 +14,7 @@ body {
   background-color: #212121;
 }
 
-.song {
+.album {
   border: 1px solid #ddd;
   margin: 2vh;
   padding: 1vh;
@@ -24,20 +24,20 @@ body {
   gap: 10px;
 }
 
-.song img {
+.album img {
   width: 10%;
   height: auto;
   border-radius: 2em;
 }
 
-.song h2 {
+.album h2 {
   font-size: 3em;
   margin: 0;
   font-family: "spotify-circular-b";
   color: #ffffff;
 }
 
-.song-details {
+.album-details {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -47,25 +47,25 @@ body {
 }
 
 @media (max-width: 768px) {
-  .song img {
+  .album img {
     width: 20%;
   }
-  .song h2 {
+  .album h2 {
     font-size: 2em;
   }
-  .song-details {
+  .album-details {
     font-size: 1.5em;
   }
 }
 
 @media (max-width: 480px) {
-  .song img {
+  .album img {
     width: 25%;
   }
-  .song h2 {
+  .album h2 {
     font-size: 1.5em;
   }
-  .song-details {
+  .album-details {
     font-size: 1em;
   }
 }
