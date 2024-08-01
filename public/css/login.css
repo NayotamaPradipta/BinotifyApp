@@ -1,92 +1,93 @@
 @font-face {
-  font-family: "spotify-circular-l";
-  src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2")
-    format("woff2");
+    font-family: 'spotify-circular-l';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2') format('woff2');
 }
 @font-face {
-  font-family: "spotify-circular-b";
-  src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2")
-    format("woff2");
+    font-family: 'spotify-circular-b';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
 }
 
 body {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  font-family: "spotify-circular-b", Arial, sans-serif;
-  background-color: black;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
+    background-color: black;
 }
 
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+
 .login-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    
 }
 
 .login-container h2 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .input-group {
-  margin-bottom: 15px;
-  text-align: left;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 .input-group label {
-  display: block;
-  margin-bottom: 5px;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .input-group input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .forgot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #1db954;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 2vh;
-  font-family: "spotify-circular-b", Arial, sans-serif;
+    width: 100%;
+    padding: 10px;
+    background-color: #1DB954;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 2vh;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
 }
 
 button:hover {
-  background-color: #1db954;
+    background-color: #1DB954;
 }
 
 .input-register {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
 }
 
 .input-register p {
-  margin-right: 0.5vw;
+
+    margin-right: 0.5vw;
 }

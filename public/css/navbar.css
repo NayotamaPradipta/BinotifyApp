@@ -1,63 +1,61 @@
 @font-face {
-  font-family: "spotify-circular-l";
-  src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2")
-    format("woff2");
+    font-family: 'spotify-circular-l';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2') format('woff2');
 }
 @font-face {
-  font-family: "spotify-circular-b";
-  src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2")
-    format("woff2");
+    font-family: 'spotify-circular-b';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
 }
 
 .logo-title {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+    display: flex; 
+    align-items: center;
+    text-decoration: none;
 }
 
 .logo-img {
-  width: 5vw;
-  height: auto;
-  margin-right: 1vw;
+    width: 5vw;
+    height: auto;
+    margin-right: 1vw;
 }
 
 .container-navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5vh 2vw;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5vh 2vw;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
 }
 
 #binotify-title {
-  margin: 0;
-  font-family: "spotify-circular-b", Arial, sans-serif;
-  color: black;
-  font-size: 2vw;
-}
+    margin: 0;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
+    color: black;
+    font-size: 2vw;
+} 
 
 .login-button {
-  padding: 1vh 2vw;
-  background-color: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 5vw;
-  border: none;
-  cursor: pointer;
-  font-family: "spotify-circular-b", Arial, sans-serif;
-  font-size: 2vw;
+    padding: 1vh 2vw;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5vw;
+    border: none;
+    cursor: pointer;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
+    font-size: 2vw;
 }
 
 @media (max-width: 768px) {
-  .logo-img {
-    width: 10vw;
-  }
-  #binotify-title {
-    font-size: 4vw;
-  }
-  .login-button {
-    font-size: 4vw;
-    padding: 1vh 3vw; /* Adjust padding for better alignment on smaller screens */
-  }
+    .logo-img {
+        width: 10vw;
+    }
+    #binotify-title {
+        font-size: 4vw;
+    }
+    .login-button {
+        font-size: 4vw;
+        padding: 1vh 3vw; /* Adjust padding for better alignment on smaller screens */
+    }
 }
