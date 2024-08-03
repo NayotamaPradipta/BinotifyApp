@@ -27,6 +27,19 @@
         echo 'Songs not found';
         exit;
     }
+
+    // Calculate total duration 
+    $stmt = $pdo->prepare('SELECT SUM(duration) AS total_duration FROM song WHERE album_id = :id'); 
+    $stmt->execute(['id' => $id]);
+    $duration = $stmt->fetch();
+    $duration = $duration['total_duration'];
+
+    function formatDuration($seconds){ 
+        $hours = floor($seconds / 3600);
+        $minutes = floor (($seconds % 3600)/60);
+        $seconds = $seconds % 60; 
+        return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+    }
 ?> 
 
 <!DOCTYPE html>
@@ -47,8 +60,11 @@
             <div>
                 <h2><?php echo htmlspecialchars($row['judul']); ?></h2>
                 <div class="album-details">
-                    <span>ALBUM BY <?php echo htmlspecialchars($row['penyanyi']); ?></span>
+                    <span><?php echo htmlspecialchars($row['penyanyi']); ?></span>
+                    <span>&#8226;</span>
+                    <span><?php echo formatDuration($duration); ?></span>
                 </div>
+                
             </div>
             <h2>Songs</h2>
             <div class="song-container">
