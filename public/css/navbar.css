@@ -30,6 +30,28 @@
   border-bottom: 1px solid #ddd;
 }
 
+#search-bar input[type="text"] {
+  width: 30vw;
+  height: 3vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#search-bar button { 
+  width: 5vw;
+  height: 3vh;
+  border: 1px solid #ccc;;
+  border-radius: 5px;
+  background-color: #1db954;
+  color: white; 
+  cursor: pointer; 
+}
+
+#search-bar button:hover { 
+  background-color: #76eb9f;
+}
+
+
 #binotify-title {
   margin: 0;
   font-family: "spotify-circular-b", Arial, sans-serif;
@@ -59,5 +81,8 @@
   .login-button {
     font-size: 4vw;
     padding: 1vh 3vw; /* Adjust padding for better alignment on smaller screens */
+  }
+  #search-bar button {
+    width: 15vw;
   }
 }

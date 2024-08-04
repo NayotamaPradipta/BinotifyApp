@@ -20,7 +20,16 @@
         </div>
     </a> 
     <?php
-        if (!$isLogged && basename($_SERVER['REQUEST_URI'])!="login.php"){
+        $requestUri = basename($_SERVER['REQUEST_URI']);
+        if ($requestUri == "index.php"|| $requestUri == ""){
+            echo '
+                <div id="search-bar"> 
+                    <input type="text" id="searchInput" placeholder="Search">
+                    <button type="button">Search</button>
+                </div>
+            ';
+        }
+        if (!$isLogged && $requestUri != "login.php"){
             echo '
                 <div id="login-button">
                     <a href="login.php" class="login-button">
