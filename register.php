@@ -8,30 +8,25 @@
 </head>
 <body>
 <?php
-// Koneksi ke database PostgreSQL
-$conn = pg_connect("host=localhost dbname=Binotify user=postgres password=farhan123");
+    ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
+    $db = $connect_db();
 
-if (!$conn) {
-    die("Connection failed: " . pg_last_error());
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-    // Memasukkan data ke dalam tabel
-    $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
-
-    $result = pg_query($conn, $sql);
-    if ($result) {
-        echo "Registration successful!";
-    } else {
-        echo "Error: " . pg_last_error($conn);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['username'];
+        // $email = $_POST['email']; Ini mau pake email atau nggak? Kalo sesuai spek gk perlu 
+                                  // Kalo mau pake email sabi databasenya ditambahin kolom email 
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        try { 
+            $stmt = $db->prepare("INSERT INTO binotify_user (password, username, isadmin) VALUES (:password, :username, :isadmin)");
+            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':isadmin', FALSE);
+            $stmt->execute();
+            echo "Registration successful!";
+        } catch (PDOException $e) { 
+            echo $e->getMessage();
+        }
     }
-}
-
-pg_close($conn);
 ?>
 
 <?php include 'navbar.php'; ?>

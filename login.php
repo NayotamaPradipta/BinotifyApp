@@ -8,35 +8,36 @@
 </head>
 <body>
 <?php
-// Koneksi ke database PostgreSQL
-$conn = pg_connect("host=localhost dbname=Binotify user=postgres password=farhan123");
+    ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
+    $db = $connect_db();
 
-if (!$conn) {
-    die("Connection failed: " . pg_last_error());
-}
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        try {   
+            // Mengecek apakah username ada di database
+            $stmt = $db->prepare("SELECT * FROM binotify_user WHERE username= :username");
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+    
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
 
-    // Mengecek apakah username ada di database
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = pg_query($conn, $sql);
-
-    if (pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        if (password_verify($password, $row['password'])) {
-            echo "Login successful!";
-            // Set session atau redirect ke halaman lain
-        } else {
-            echo "Invalid password!";
+            if ($row) {
+                # Ini pastiin hashnya bisa untuk enkripsi dekripsi, belum ta coba
+                if (password_verify($password, $row['password'])) {
+                    echo "Login successful!";
+                    // Set session atau redirect ke halaman lain
+                } else {
+                    echo "Invalid password!";
+                }
+            } else {
+                echo "No user found with that username!";
+            }
+        } catch (PDOException $e) { 
+            echo $e->getMessage();
         }
-    } else {
-        echo "No user found with that username!";
     }
-}
-
-pg_close($conn);
 ?>
 
 <?php include 'navbar.php'; ?>
