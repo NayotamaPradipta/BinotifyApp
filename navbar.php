@@ -8,7 +8,11 @@
 </head>
 
 <?php
+    session_start();
     $isLogged = false;
+    if (isset($_SESSION['username'])){
+        $isLogged = true;
+    }
 ?>
 
 
@@ -28,6 +32,10 @@
                     </a>
                 </div>
             ';
+        }
+        if ($isLogged){
+            echo $_SESSION['username']; 
+
         }
     ?>
 </div>
