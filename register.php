@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="public/css/register.css">
 </head>
 <body>
+<?php
+// Koneksi ke database PostgreSQL
+$conn = pg_connect("host=localhost dbname=Binotify user=postgres password=farhan123");
+
+if (!$conn) {
+    die("Connection failed: " . pg_last_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+    // Memasukkan data ke dalam tabel
+    $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+
+    $result = pg_query($conn, $sql);
+    if ($result) {
+        echo "Registration successful!";
+    } else {
+        echo "Error: " . pg_last_error($conn);
+    }
+}
+
+pg_close($conn);
+?>
+
 <?php include 'navbar.php'; ?>
 <div class="wrapper">
     <div class="container">
