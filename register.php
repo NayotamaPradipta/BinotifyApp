@@ -20,7 +20,7 @@
             $stmt = $db->prepare("INSERT INTO binotify_user (password, username, isadmin) VALUES (:password, :username, :isadmin)");
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':isadmin', FALSE);
+            $stmt->bindValue(':isadmin', FALSE, PDO::PARAM_BOOL);
             $stmt->execute();
             echo "Registration successful!";
         } catch (PDOException $e) { 
@@ -33,7 +33,7 @@
 <div class="wrapper">
     <div class="container">
         <h2>Register</h2>
-        <form id="registrationForm" action="/register" method="post">
+        <form id="registrationForm" action="/register.php" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
@@ -53,7 +53,7 @@
             </div>
             <div class="back-login">
                 <p>Already have an account?</p>
-                <a href="Login.php">Login</a>
+                <a href="login.php">Login</a>
             </div>
             <button type="submit">Register</button>
         </form>
