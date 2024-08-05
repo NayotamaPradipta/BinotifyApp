@@ -6,8 +6,39 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="public/css/login.css">
 </head>
-
 <body>
+<?php
+// Koneksi ke database PostgreSQL
+$conn = pg_connect("host=localhost dbname=Binotify user=postgres password=farhan123");
+
+if (!$conn) {
+    die("Connection failed: " . pg_last_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Mengecek apakah username ada di database
+    $sql = "SELECT * FROM users WHERE username='$username'";
+    $result = pg_query($conn, $sql);
+
+    if (pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        if (password_verify($password, $row['password'])) {
+            echo "Login successful!";
+            // Set session atau redirect ke halaman lain
+        } else {
+            echo "Invalid password!";
+        }
+    } else {
+        echo "No user found with that username!";
+    }
+}
+
+pg_close($conn);
+?>
+
 <?php include 'navbar.php'; ?>
 <div class="wrapper">
     <div class="login-container">
