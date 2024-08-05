@@ -23,6 +23,8 @@
             $stmt->bindValue(':isadmin', FALSE, PDO::PARAM_BOOL);
             $stmt->execute();
             echo "Registration successful!";
+            header("Location: login.php");
+            exit();
         } catch (PDOException $e) { 
             echo $e->getMessage();
         }
@@ -33,7 +35,7 @@
 <div class="wrapper">
     <div class="container">
         <h2>Register</h2>
-        <form id="registrationForm" action="/register.php" method="post">
+        <form id="registrationForm" action="/BinotifyApp/register.php" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>

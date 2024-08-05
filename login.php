@@ -28,6 +28,11 @@
                 if (password_verify($password, $row['password'])) {
                     echo "Login successful!";
                     // Set session atau redirect ke halaman lain
+                    session_start();
+                    $_SESSION['username'] = $username;
+                    header("Location: index.php");
+                    exit();
+                
                 } else {
                     echo "Invalid password!";
                 }
