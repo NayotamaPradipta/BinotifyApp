@@ -73,13 +73,14 @@
     $user_query = "
         CREATE TABLE IF NOT EXISTS binotify_user (
             user_id SERIAL PRIMARY KEY,
+            email VARCHAR(256) NOT NULL,
             password VARCHAR(256) NOT NULL,
             username VARCHAR(256) NOT NULL,
             isadmin BOOLEAN NOT NULL
         );
 
-        INSERT INTO binotify_user (password, username, isadmin)
-        SELECT 'admin', 'admin', true
+        INSERT INTO binotify_user (email, password, username, isadmin)
+        SELECT 'binotimin@gmail.com', 'admin', 'admin', true
         WHERE NOT EXISTS (SELECT 1 FROM binotify_user WHERE username = 'admin');
     ";
 
