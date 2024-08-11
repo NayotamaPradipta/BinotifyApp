@@ -20,7 +20,7 @@
     $stmt->bindParam(':search_term', $search_term);
     $stmt->execute(); 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo "<h2>Search Results for '" . htmlspecialchars($search_query) . "'</h2>";
+    echo "<h2 id='search-text'>Search Results for '" . htmlspecialchars($search_query) . "'</h2>";
     if ($result) { 
         foreach($result as $row){
             echo '<div class="song">';

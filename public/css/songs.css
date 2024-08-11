@@ -57,7 +57,7 @@ html, body {
   color: #FFFFFF;
 }
 
-h2 {
+#search-text {
   text-align: center;
   font-family: 'spotify-circular-b';
   color: white;
