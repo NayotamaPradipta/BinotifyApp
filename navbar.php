@@ -25,7 +25,7 @@
             echo '
                 <div id="search-bar"> 
                     <form action="./search.php" method="GET">
-                        <input type="text" name="query" id="searchInput" placeholder="Search for songs..." required>
+                        <input type="text" name="query" id="searchInput" placeholder="Search for songs...">
                         <button type="submit">Search</button>
                     </form>
                 </div>
