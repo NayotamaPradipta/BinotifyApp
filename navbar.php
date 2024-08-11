@@ -9,6 +9,7 @@
 
 <?php
     $isLogged = false;
+    $requestUri = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 ?>
 
 
@@ -20,8 +21,7 @@
         </div>
     </a> 
     <?php
-        $requestUri = basename($_SERVER['REQUEST_URI']);
-        if ($requestUri == "index.php"|| $requestUri == ""){
+        if ($requestUri == "index.php"|| $requestUri == "" || $requestUri == "search.php"){
             echo '
                 <div id="search-bar"> 
                     <form action="./search.php" method="GET">

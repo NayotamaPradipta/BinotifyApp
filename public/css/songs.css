@@ -57,6 +57,20 @@ html, body {
   color: #FFFFFF;
 }
 
+h2 {
+  text-align: center;
+  font-family: 'spotify-circular-b';
+  color: white;
+}
+
+p { 
+  text-align: center;
+  font-family: 'spotify-circular-b';
+  color: white
+}
+
+
+
 @media (max-width: 768px) {
   .song img {
       width: 20%;
