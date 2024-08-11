@@ -9,6 +9,7 @@
 
 <body>
 <?php 
+    include 'navbar.php';
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     $pdo = $connect_db();
 
@@ -19,9 +20,8 @@
     $stmt->bindParam(':search_term', $search_term);
     $stmt->execute(); 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    echo "<h2>Search Results for '" . htmlspecialchars($search_query) . "'</h2>";
     if ($result) { 
-        echo "<h2>Search Results for '" . htmlspecialchars($search_query) . "'</h2>";
         foreach($result as $row){
             echo '<div class="song">';
                 echo '<a href="song_detail.php?id=' . htmlspecialchars($row['song_id']) . '">';
@@ -39,7 +39,7 @@
             echo '</div>';
         }
     } else { 
-        echo "<p> No results found for '" . htmlspecialchars($search_query) . "'</p>";
+        echo "<p> No results found :(</p>";
     }
 
 ?> 
