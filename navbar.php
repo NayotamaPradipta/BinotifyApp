@@ -24,8 +24,10 @@
         if ($requestUri == "index.php"|| $requestUri == ""){
             echo '
                 <div id="search-bar"> 
-                    <input type="text" id="searchInput" placeholder="Search">
-                    <button type="button">Search</button>
+                    <form action="./search.php" method="GET">
+                        <input type="text" name="query" id="searchInput" placeholder="Search for songs..." required>
+                        <button type="submit">Search</button>
+                    </form>
                 </div>
             ';
         }
