@@ -16,6 +16,15 @@
         echo 'Song not found';
         exit;
     }
+    $album_id = $row['album_id'];
+    $album_stmt = $pdo->prepare('SELECT judul FROM album WHERE album_id = :album_id');
+    $album_stmt->execute(['album_id' => $album_id]);
+    $album_row = $album_stmt->fetch();
+    if (!$album_row){ 
+        echo 'Album not found';
+        exit;
+    }
+    $album_name = $album_row['judul'];
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +40,14 @@
     ?>
     <div class="song-detail-wrapper">
         <div class="song-detail">
-            <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Album cover">
+            <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Song cover">
             <div>
                 <h2><?php echo htmlspecialchars($row['judul']); ?></h2>
+                <div class="album-name">
+                    <a href="album_detail.php?id=<?php echo htmlspecialchars($row['album_id']); ?>">
+                        <?php echo htmlspecialchars($album_name); ?> 
+                    </a>
+                </div>
                 <div class="song-details">
                     <span><?php echo htmlspecialchars($row['penyanyi']); ?></span>
                     <span>&#8226;</span> 
