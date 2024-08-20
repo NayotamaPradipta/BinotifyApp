@@ -7,86 +7,95 @@
     src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
 }
 
-html, body {
+html, body { 
     background-color: #212121;
-    margin: 0;
+    margin: 0; 
     padding: 0;
     font-family: 'spotify-circular-l', Arial, sans-serif;
     color: #FFFFFF;
     height: 100%;
 }
 
-.song-detail-wrapper {
+.album-detail-wrapper { 
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }
 
-.song-detail {
-    display: flex;
+.album-detail { 
     align-items: center;
-    padding: 2em;
     gap: 2em;
-    max-width: 900px;
     margin: auto;
     background-color: #333333;
     border-radius: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10 px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
-.song-detail img {
-    width: 25%;
-    height: auto;
+.album-detail img { 
+    width: 15%;
+    height: auto; 
     border-radius: 1em;
 }
 
-.song-detail div {
+.album-detail div { 
     flex-grow: 1;
+    justify-content: center;
 }
 
-.song-detail h2 {
+.album-detail h2 { 
     font-size: 3em;
     margin: 0;
     font-family: 'spotify-circular-b';
 }
 
-.album-name a { 
-    color: #FFFFFF;
-    text-decoration: none;
-    font-family: 'spotify-circular-b', Arial, sans-serif;
-    font-size: 1.3em;
-    color: #1DB954 /* Spotify Color Palette*/
-}
-
-.song-details {
+.album-details { 
     display: flex;
-    justify-content: center;
     gap: 10px;
     font-size: 1.2em;
     margin: 1em 0;
 }
 
-audio {
+.song {
+    border: 1px solid #ddd;
+    margin: 1vh;
+    padding: 1vh;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #333333;
+}
+  
+.song a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     width: 100%;
-    outline: none;
 }
 
-@media (max-width: 768px) {
-    .song-detail {
+.song-title { 
+    font-family: 'spotify-circular-b';
+}
+
+@media (max-width: 768px) { 
+    .album-detail { 
         flex-direction: column;
-        justify-content: center;
+        align-items: flex-start;
+        padding: 1em;
+    }
+    
+    .album-detail img { 
+        width: 35%;
     }
 
-    .song-detail img {
-        width: 100%;
-    }
-
-    .song-detail h2 {
+    .album-detail h2 {
         font-size: 2em;
     }
 
-    .song-details {
+    .album-details { 
         font-size: 1em;
     }
 }
