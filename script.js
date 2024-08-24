@@ -13,13 +13,23 @@ document.addEventListener('DOMContentLoaded', function(){
     let isUsernameAvailable =  true; 
     let isEmailAvailable = true; 
 
-    usernameInput.addEventListener('blur', function() {
-        checkAvailability('username', usernameInput.value, usernameMessage, usernameInput);
-    });
+    function debounce(func, delay){ 
+        let debounceTimer; 
+        return function(){ 
+            const context = this; 
+            const args = arguments; 
+            clearTimeout(debounceTimer); 
+            debounceTimer = setTimeout(() => func.apply(context, args), delay);
+        };
+    }
 
-    emailInput.addEventListener('blur', function(){ 
+    usernameInput.addEventListener('blur', debounce(function() {
+        checkAvailability('username', usernameInput.value, usernameMessage, usernameInput);
+    }, 2000));
+
+    emailInput.addEventListener('blur', debounce(function(){ 
         checkAvailability('email', emailInput.value, emailMessage, emailInput);
-    })
+    }, 2000));
 
     registrationForm.addEventListener('submit', function(event) { 
         var password = passwordInput.value; 
