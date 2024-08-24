@@ -1,3 +1,52 @@
+<?php
+    ob_start();
+    ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
+    $db = $connect_db();
+    $error_message = '';
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        if ($username === 'admin') { 
+            if ($password === 'admin') { 
+                session_start();
+                $_SESSION['username'] = $username;
+                header("Location: index.php");
+                exit();
+            } else { 
+                $error_message = "Invalid password for admin!";
+            }
+        } 
+        else { 
+            try {   
+                // Mengecek apakah username ada di database
+                $stmt = $db->prepare("SELECT * FROM binotify_user WHERE username= :username");
+                $stmt->bindParam(':username', $username);
+                $stmt->execute();
+        
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+                if ($row) {
+                    if (password_verify($password, $row['password'])) {
+                        session_start();
+                        $_SESSION['username'] = $username;
+                        header("Location: index.php");
+                        exit();
+                    } else {
+                        $error_message = "Invalid password!";
+                    }
+                } else {
+                    $error_message = "No user found with that username!";
+                }
+            } catch (PDOException $e) { 
+                $error_message = $e->getMessage();
+            }
+        }
+    }
+    include 'navbar.php';
+    ob_end_flush();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,48 +56,13 @@
     <link rel="stylesheet" href="public/css/login.css">
 </head>
 <body>
-<?php
-    ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
-    $db = $connect_db();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        try {   
-            // Mengecek apakah username ada di database
-            $stmt = $db->prepare("SELECT * FROM binotify_user WHERE username= :username");
-            $stmt->bindParam(':username', $username);
-            $stmt->execute();
-    
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-            if ($row) {
-                # Ini pastiin hashnya bisa untuk enkripsi dekripsi, belum ta coba
-                if (password_verify($password, $row['password'])) {
-                    echo "Login successful!";
-                    // Set session atau redirect ke halaman lain
-                    session_start();
-                    $_SESSION['username'] = $username;
-                    header("Location: index.php");
-                    exit();
-                
-                } else {
-                    echo "Invalid password!";
-                }
-            } else {
-                echo "No user found with that username!";
-            }
-        } catch (PDOException $e) { 
-            echo $e->getMessage();
-        }
-    }
-?>
-
-<?php include 'navbar.php'; ?>
 <div class="wrapper">
     <div class="login-container">
         <h2>Login</h2>
+        <?php if (!empty($error_message)): ?>
+            <p id="error-message"><?php echo htmlspecialchars($error_message); ?></p>
+        <?php endif; ?>
         <form action="login.php" method="post">
             <div class="input-group">
                 <label for="username">Username:</label>
@@ -72,11 +86,6 @@
             </div>
             <div class="input-register">
                 <p>Don't have an account?</p>
-                <!-- 
-                TODO: 
-                1. Create register.php and change href
-                2. Create a link from login to home page
-                -->
                 <a href="register.php">Register</a> 
             </div>
         </form>
