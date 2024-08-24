@@ -58,6 +58,16 @@ input[type="password"] {
   border-radius: 4px;
 }
 
+input.input-error { 
+  border: 2px solid red !important;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+}
+
+span { 
+  color: red;
+}
+
 button {
   width: 100%;
   padding: 10px;
