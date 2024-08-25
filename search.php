@@ -19,13 +19,16 @@
     $order_by = $_GET['order_by'] ?? 'ASC';
 
     $search_term = "%" . strtolower($search_query) . "%";
+    $search_year = (int) $search_query;
+    
     $stmt = $pdo->prepare("
         SELECT * FROM song 
-        WHERE (LOWER(judul) LIKE :search_term OR LOWER(penyanyi) LIKE :search_term)
+        WHERE (LOWER(judul) LIKE :search_term OR LOWER(penyanyi) LIKE :search_term OR EXTRACT(YEAR FROM tanggal_terbit) = :search_year)
         AND (:genre = '' OR genre = :genre)
         ORDER BY $sort_by $order_by"
         );
     $stmt->bindParam(':search_term', $search_term);
+    $stmt->bindParam(':search_year', $search_year);
     $stmt->bindParam(':genre', $genre_filter);
     $stmt->execute(); 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
