@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en"> 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-    <link rel="stylesheet" href="public/css/songs.css" type="text/css">
-</head>
-
-<body>
 <?php 
     include 'navbar.php';
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
@@ -34,6 +24,17 @@
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo "<h2 id='search-text'>Search Results for '" . htmlspecialchars($search_query) . "'</h2>";
 ?> 
+
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="public/css/songs.css" type="text/css">
+</head>
+
+<body>
 
 <div id="search-options">
     <form action="./search.php" method="GET">
