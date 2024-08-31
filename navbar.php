@@ -9,6 +9,7 @@
 
 <?php
     $isLogged = false;
+    $requestUri = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 ?>
 
 
@@ -20,7 +21,17 @@
         </div>
     </a> 
     <?php
-        if (!$isLogged && basename($_SERVER['REQUEST_URI'])!="login.php"){
+        if ($requestUri == "index.php"|| $requestUri == "" || $requestUri == "search.php"){
+            echo '
+                <div id="search-bar"> 
+                    <form action="./search.php" method="GET">
+                        <input type="text" name="query" id="searchInput" placeholder="Search for songs...">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+            ';
+        }
+        if (!$isLogged && $requestUri != "login.php"){
             echo '
                 <div id="login-button">
                     <a href="login.php" class="login-button">
