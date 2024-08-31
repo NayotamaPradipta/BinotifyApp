@@ -1,9 +1,16 @@
+<?php
+    session_start();
+    $isLogged = false;
+    if (isset($_SESSION['username'])){
+        $isLogged = true;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditional Navbar</title>
     <link rel="stylesheet" href="./public/css/navbar.css">
 </head>
 
@@ -39,6 +46,10 @@
                     </a>
                 </div>
             ';
+        }
+        if ($isLogged){
+            echo $_SESSION['username']; 
+
         }
     ?>
 </div>
