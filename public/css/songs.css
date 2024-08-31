@@ -57,6 +57,23 @@ html, body {
   color: #FFFFFF;
 }
 
+#search-text {
+  text-align: center;
+  font-family: 'spotify-circular-b';
+  color: white;
+}
+
+p { 
+  text-align: center;
+  font-family: 'spotify-circular-b';
+  color: white
+}
+
+#search-options { 
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   .song img {
       width: 20%;
