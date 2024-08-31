@@ -90,3 +90,7 @@ button:hover {
 .input-register p {
   margin-right: 0.5vw;
 }
+
+#error-message { 
+  color: red;
+}

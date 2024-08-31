@@ -1,3 +1,6 @@
+<?php
+    include "navbar.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +13,7 @@
 </head>
 <body>
     <div id="nav-container">
-        <?php
-            include "navbar.php";
-        ?>
+
     </div>
     <div id="songs-container">
         <?php
