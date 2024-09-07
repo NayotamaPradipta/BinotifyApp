@@ -2,6 +2,8 @@
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     $pdo = $connect_db();
 
+    include 'navbar.php';   
+
     if (!isset($_GET['id'])) {
         echo 'No song ID provided';
         exit;
@@ -25,6 +27,21 @@
         exit;
     }
     $album_name = $album_row['judul'];
+
+    // Logic to determine if audio should be disabled
+    if (!$isLogged) {
+        if (!isset($_SESSION['audio_play_count'])) {
+            $_SESSION['audio_play_count'] = 0; 
+        }
+
+        if ($_SESSION['audio_play_count'] >= 3) {
+            $audio_disabled = true; 
+        } else {
+            $audio_disabled = false; 
+        }
+    } else {
+        $audio_disabled = false; 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -33,11 +50,9 @@
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($row['judul']); ?></title>
     <link rel="stylesheet" href="public/css/song_detail.css" type="text/css">
+    <script src="src/scripts/play.js"></script>
 </head>
 <body>
-    <?php 
-        include 'navbar.php'; 
-    ?>
     <div class="song-detail-wrapper">
         <div class="song-detail">
             <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Song cover">
@@ -55,10 +70,14 @@
                     <span>&#8226;</span> 
                     <span><?php echo htmlspecialchars($row['genre']); ?></span>
                 </div>
-                <audio controls>
-                    <source src="<?php echo htmlspecialchars($row['audio_path']); ?>" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+                <?php if ($audio_disabled): ?> 
+                    <p>You have reached the maximum number of plays. Please log in to continue listening.</p>
+                <?php else: ?>
+                    <audio controls onplay="trackPlay(this)">
+                        <source src="<?php echo htmlspecialchars($row['audio_path']); ?>" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                <?php endif; ?>
             </div>
         </div>
     </div>
