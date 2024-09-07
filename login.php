@@ -19,7 +19,6 @@
         } 
         else { 
             try {   
-                // Mengecek apakah username ada di database
                 $stmt = $db->prepare("SELECT * FROM binotify_user WHERE username= :username");
                 $stmt->bindParam(':username', $username);
                 $stmt->execute();
