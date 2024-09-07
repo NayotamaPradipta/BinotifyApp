@@ -71,6 +71,12 @@
   font-size: 2vw;
 }
 
+.user-name { 
+  color: black;
+  font-family: "spotify-circular-b", Arial, sans-serif;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .logo-img {
     width: 10vw;
