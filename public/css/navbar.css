@@ -71,10 +71,27 @@
   font-size: 2vw;
 }
 
+.logout-button {
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5vw;
+  border: none;
+  cursor: pointer;
+  font-family: "spotify-circular-b", Arial, sans-serif;
+  font-size: 1.5vw;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
 .user-name { 
+  margin-right: 1rem;
   color: black;
   font-family: "spotify-circular-b", Arial, sans-serif;
-  margin: 0;
 }
 
 @media (max-width: 768px) {
