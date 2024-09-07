@@ -46,7 +46,13 @@
         }
         if ($isLogged){
             echo 
-            '<p class="user-name"> Hello, ' . htmlspecialchars($_SESSION['username']) .  '!</p>';
+            '<div class="user-info">
+                <p class="user-name"> Hello, ' . htmlspecialchars($_SESSION['username']) .  '!</p>
+                <form action="logout.php" method="post" class="logout-form">
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            </div>';
+
         }
     ?>
 </div>
