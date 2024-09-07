@@ -4,6 +4,7 @@
     if (isset($_SESSION['username'])){
         $isLogged = true;
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +15,6 @@
     <link rel="stylesheet" href="./public/css/navbar.css">
 </head>
 
-<?php
-    $isLogged = false;
-    $requestUri = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-?>
-
 
 <div id="navbar" class="container-navbar">
     <a href="index.php" class="logo-title"> 
@@ -28,6 +24,7 @@
         </div>
     </a> 
     <?php
+        $requestUri = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
         if ($requestUri == "index.php"|| $requestUri == "" || $requestUri == "search.php"){
             echo '
                 <div id="search-bar"> 
@@ -48,8 +45,8 @@
             ';
         }
         if ($isLogged){
-            echo $_SESSION['username']; 
-
+            echo 
+            '<p class="user-name"> Hello, ' . htmlspecialchars($_SESSION['username']) .  '!</p>';
         }
     ?>
 </div>
