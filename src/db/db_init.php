@@ -2,6 +2,18 @@
     ['connect_db' => $connect_db] = require('db_connect.php');
     $db = $connect_db();
 
+    $drop_table_query = "
+        DROP TABLE IF EXISTS song;
+        DROP TABLE IF EXISTS album;
+        DROP TABLE IF EXISTS binotify_user;
+    ";
+
+    try {
+        $db->exec($drop_table_query);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
     // Create Album Table 
     $album_query = "
         CREATE TABLE IF NOT EXISTS album(
@@ -26,6 +38,10 @@
         INSERT INTO album (penyanyi, total_duration, judul, image_path, tanggal_terbit, genre)
         SELECT 'LXNGVX', 88, 'Sigma', 'public/music/visual/album/phonkalbum.jpeg', '2023-01-01', 'Phonk'
         WHERE NOT EXISTS (SELECT 1 FROM album WHERE judul = 'Sigma' AND penyanyi = 'LXNGVX');
+
+        INSERT INTO album (penyanyi, total_duration, judul, image_path, tanggal_terbit, genre)
+        SELECT 'Monster Cat', '555', 'Best of 2014', 'public/music/visual/album/monstercat.jpg', '2014-12-29', 'Electronic'
+        WHERE NOT EXISTS (SELECT 1 FROM album WHERE judul = 'Best of 2014' AND penyanyi = 'Monster Cat');
     ";
 
     try {
@@ -62,7 +78,16 @@
         SELECT 'Montagem Mysterious Game', 'LXNGVX', '2022-02-02', 'Phonk', 103, 'public/music/audio/MMG.mp3', 'public/music/visual/song/mmg.jpg', 
         (SELECT album_id FROM album WHERE judul = 'Sigma' AND penyanyi = 'LXNGVX' LIMIT 1)
         WHERE NOT EXISTS (SELECT 1 FROM song WHERE judul = 'Montagem Mysterious Game' AND penyanyi = 'LXNGVX');
-    ";
+        
+        INSERT INTO song (judul, penyanyi, tanggal_terbit, genre, duration, audio_path, image_path, album_id)
+        SELECT 'Valkyrie', 'Varien', '2014-06-17', 'Electronic', 208, 'public/music/audio/Valkyrie.mp3', 'public/music/visual/song/valkyrie.jpg', 2
+        WHERE NOT EXISTS (SELECT 1 FROM song WHERE judul = 'Valkyrie' AND penyanyi = 'Varien');
+
+        INSERT INTO song (judul, penyanyi, tanggal_terbit, genre, duration, audio_path, image_path, album_id) 
+        SELECT 'Snowblind', 'Au5', '2014-09-11', 'Electronic', 347, 'public/music/audio/Snowblind.mp3', 'public/music/visual/song/snowblind.jpg', 2
+        WHERE NOT EXISTS (SELECT 1 FROM song WHERE judul = 'Snowblind' AND penyanyi = 'Au5');
+
+        ";
 
     try {
         $db->exec($song_query);
