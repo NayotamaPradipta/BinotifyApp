@@ -17,19 +17,21 @@
         $stmt = $pdo->query('SELECT * FROM album ORDER BY judul ASC');
 
         while ($row = $stmt->fetch()){
-            echo '<div class="album">';
-                echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Song Cover">';
-                echo '<div>';
-                    echo '<h2>' . htmlspecialchars($row['judul']) . '</h2>';
-                    echo '<div class="album-details">';
-                        echo '<span>' . htmlspecialchars($row['penyanyi']) . '</span>';
-                        echo '<span>&#8226;</span>';
-                        echo '<span>' . htmlspecialchars(substr($row['tanggal_terbit'], 0, 4)) . '</span>';
-                        echo '<span>&#8226;</span>';
-                        echo '<span>' . htmlspecialchars($row['genre']) . '</span>';
+            echo '<a href="album_detail.php?id=' . htmlspecialchars($row['album_id']) . '" class="album-link">';
+                echo '<div class="album">';
+                    echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Song Cover">';
+                    echo '<div>';
+                        echo '<h2>' . htmlspecialchars($row['judul']) . '</h2>';
+                        echo '<div class="album-details">';
+                            echo '<span>' . htmlspecialchars($row['penyanyi']) . '</span>';
+                            echo '<span>&#8226;</span>';
+                            echo '<span>' . htmlspecialchars(substr($row['tanggal_terbit'], 0, 4)) . '</span>';
+                            echo '<span>&#8226;</span>';
+                            echo '<span>' . htmlspecialchars($row['genre']) . '</span>';
+                        echo '</div>';
                     echo '</div>';
-                echo '</div>';
-            echo '</div>';
+                echo '</div>';  
+            echo '</a>';
         }
 
     ?> 
