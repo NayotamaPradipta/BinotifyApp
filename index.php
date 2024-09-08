@@ -12,9 +12,6 @@
 
 </head>
 <body>
-    <div id="nav-container">
-
-    </div>
     <div id="songs-container">
         <?php
             include "songs.php";
