@@ -24,6 +24,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: #333333;
 }
 
 .album img {
@@ -46,6 +47,12 @@ body {
   font-family: "spotify-circular-l";
   font-size: 1.5em;
   color: #ffffff;
+}
+
+.album-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 @media (max-width: 768px) {
