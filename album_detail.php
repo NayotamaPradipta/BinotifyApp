@@ -1,7 +1,8 @@
 <?php 
+    // Access via localhost:8080/album_detai.php
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     $pdo = $connect_db();
-
+    include 'navbar.php';
     if (!isset($_GET['id'])) { 
         echo 'No album ID provided';
         exit;
@@ -51,9 +52,6 @@
 </head>
 
 <body>
-    <?php 
-        include 'navbar.php';
-    ?>
     <div class="album-detail-wrapper">
         <div class="album-detail">
             <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="Album cover">
