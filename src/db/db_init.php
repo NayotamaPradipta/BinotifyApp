@@ -1,7 +1,9 @@
 <?php
     ['connect_db' => $connect_db] = require('db_connect.php');
     $db = $connect_db();
-
+    // Current configuration for XAMPP is to drop existing table 
+    // With the current config, the database will be automatically deleted once this file is executed
+    // This is a temporary config. $drop_table_query should be deleted once the admin feature is fully implemented
     $drop_table_query = "
         DROP TABLE IF EXISTS song;
         DROP TABLE IF EXISTS album;
