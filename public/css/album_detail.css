@@ -30,6 +30,7 @@ html, body {
     border-radius: 1em;
     box-shadow: 0 0 10 px rgba(0, 0, 0, 0.5);
     text-align: center;
+    text-decoration: none;
 }
 
 .album-detail img { 

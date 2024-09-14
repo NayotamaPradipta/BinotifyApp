@@ -17,6 +17,7 @@
 
 
 <div id="navbar" class="container-navbar">
+
     <a href="index.php" class="logo-title"> 
         <img src="./public/favicon.ico" class="logo-img">
         <div id="binotify-title" class="text-title large-title">
@@ -24,6 +25,16 @@
         </div>
     </a> 
     <?php
+        if ($isLogged && $_SESSION['username'] == 'admin') {
+            echo '
+                <div class="user-list link-item">
+                    <a href="" class="user-list-button">
+                        <img src="./public/image/user.png" alt="Add User" width="40" height="40"/>
+                        <span>Users</span>
+                    </a>
+                </div>
+            ';
+        }
         $requestUri = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
         if ($requestUri == "index.php"|| $requestUri == "" || $requestUri == "search.php"){
             echo '
@@ -32,6 +43,12 @@
                         <input type="text" name="query" id="searchInput" placeholder="Search for songs...">
                         <button type="submit">Search</button>
                     </form>
+                </div>
+                <div class="album-list link-item">
+                    <a href="./album.php" class="album-list">
+                        <img src="./public/image/album.png" alt="Album List" width="40" height="40"/>  
+                        <span>Album</span>
+                    </a>
                 </div>
             ';
         }
@@ -45,6 +62,24 @@
             ';
         }
         if ($isLogged){
+            if ($_SESSION['username'] == 'admin') {
+                echo
+                '
+                <div class="add-song link-item">
+                    <a href="" class="add-song-button">
+                        <img src="./public/image/addSong.png" alt="Add Song" width="40" height="40"/>
+                        <span>Add Song</span>
+                    </a>
+                </div>
+                <div class="add-album link-item">
+                    <a href="" class="add-album-button">
+                        <img src="./public/image/addAlbum.png" alt="Add Album" width="40" height="40"/>
+                        <span>Add Album</span>
+                    </a>
+                </div>
+
+                ';
+            }
             echo 
             '<div class="user-info">
                 <p class="user-name"> Hello, ' . htmlspecialchars($_SESSION['username']) .  '!</p>
