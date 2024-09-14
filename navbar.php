@@ -28,7 +28,7 @@
         if ($isLogged && $_SESSION['username'] == 'admin') {
             echo '
                 <div class="user-list link-item">
-                    <a href="" class="user-list-button">
+                    <a href="./users.php" class="user-list-button">
                         <img src="./public/image/user.png" alt="Add User" width="40" height="40"/>
                         <span>Users</span>
                     </a>
