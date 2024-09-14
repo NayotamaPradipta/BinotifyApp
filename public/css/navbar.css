@@ -94,6 +94,20 @@
   font-family: "spotify-circular-b", Arial, sans-serif;
 }
 
+.link-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color:#333;
+  text-decoration: none;
+}
+
+.link-item span {
+  margin-top: 1px;
+}
+
+
 @media (max-width: 768px) {
   .logo-img {
     width: 10vw;
