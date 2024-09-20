@@ -1,5 +1,6 @@
 function trackPlay(audioElement){ 
-    fetch('../../trackplay.php')
+    let baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+    fetch(`${baseUrl}/trackplay.php`)
         .then(response => response.json())
         .then(data => {
             if (data.success){
