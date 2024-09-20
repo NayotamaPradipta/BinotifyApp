@@ -20,14 +20,14 @@ h2 {
     font-family: 'spotify-circular-b';
 }
 
-.add-song-container {
+.add-album-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
 }
 
-.add-song-form {
+.add-album-form {
     gap: 2em;
     margin: 1vh 0;
     background-color: #333333;
@@ -75,3 +75,4 @@ button {
     transition: background-color 0.3s;
     font-family: 'spotify-circular-b';
 }
+
