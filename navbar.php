@@ -66,13 +66,13 @@
                 echo
                 '
                 <div class="add-song link-item">
-                    <a href="" class="add-song-button">
+                    <a href="addSong.php" class="add-song-button">
                         <img src="./public/image/addSong.png" alt="Add Song" width="40" height="40"/>
                         <span>Add Song</span>
                     </a>
                 </div>
                 <div class="add-album link-item">
-                    <a href="" class="add-album-button">
+                    <a href="addAlbum.php" class="add-album-button">
                         <img src="./public/image/addAlbum.png" alt="Add Album" width="40" height="40"/>
                         <span>Add Album</span>
                     </a>
