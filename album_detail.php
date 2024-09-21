@@ -24,10 +24,6 @@
     $stmt->execute(['id' => $id]);
     $songs = $stmt->fetchAll();
 
-    if (!$songs) { 
-        echo 'Songs not found';
-        exit;
-    }
 
     function formatDuration($seconds){ 
         $hours = floor($seconds / 3600);
@@ -60,6 +56,11 @@
             </div>
             <h2>Songs</h2>
             <div class="song-container">
+                <?php 
+                    if (!$songs) { 
+                        echo '<h3>No songs in the album</h3>';
+                    }
+                ?>
                 <?php foreach ($songs as $song): ?>
                     <div class="song">
                         <a href="song_detail.php?id=<?php echo htmlspecialchars($song['song_id']); ?>">
