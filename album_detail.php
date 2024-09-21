@@ -29,12 +29,6 @@
         exit;
     }
 
-    // Calculate total duration 
-    $stmt = $pdo->prepare('SELECT SUM(duration) AS total_duration FROM song WHERE album_id = :id'); 
-    $stmt->execute(['id' => $id]);
-    $duration = $stmt->fetch();
-    $duration = $duration['total_duration'];
-
     function formatDuration($seconds){ 
         $hours = floor($seconds / 3600);
         $minutes = floor (($seconds % 3600)/60);
@@ -60,7 +54,7 @@
                 <div class="album-details">
                     <span><?php echo htmlspecialchars($row['penyanyi']); ?></span>
                     <span>&#8226;</span>
-                    <span><?php echo formatDuration($duration); ?></span>
+                    <span><?php echo formatDuration($row['total_duration']); ?></span>
                 </div>
                 
             </div>
