@@ -81,6 +81,12 @@ html, body {
     font-family: 'spotify-circular-b';
 }
 
+h3 {
+    justify-content: center;
+    text-align: center;
+    color: red;
+}
+
 @media (max-width: 768px) { 
     .album-detail { 
         flex-direction: column;
