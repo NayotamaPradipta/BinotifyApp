@@ -88,7 +88,6 @@
                             </button>
                         </a>
                         <form method="post" action="song_delete.php">
-                            
                             <input type="hidden" name="song_id" value="<?php echo htmlspecialchars($row['song_id']); ?>">
                             <button type="submit" onclick="return confirm('Are you sure you want to delete this song?');" class="btn-delete">
                                 <img src="./public/image/delete.png" alt="Delete Icon"/>
