@@ -106,10 +106,7 @@
                 </div>
                 <div class="input-group">
                     <label for="audio-upload">Upload Audio</label>
-                    <div class="custom-cover-upload">
-                        <input type="file" id="audio-upload" name="audio-upload" accept="audio/*" required>
-                    </div>
-                    
+                    <input type="file" id="audio-upload" name="audio-upload" accept="audio/*" required>
                 </div>
                 <div class="input-group">
                     <label for="cover-upload">Upload Cover</label>
