@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if (session_status() === PHP_SESSION_NONE){
+        session_start();
+    }
     $isLogged = false;
     if (isset($_SESSION['username'])){
         $isLogged = true;

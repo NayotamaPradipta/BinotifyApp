@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
+        echo 'Unauthorized access';
+        exit;
+    }
+
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     $pdo = $connect_db();
 
