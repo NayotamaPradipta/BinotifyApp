@@ -19,7 +19,7 @@
         while ($row = $stmt->fetch()){
             echo '<a href="album_detail.php?id=' . htmlspecialchars($row['album_id']) . '" class="album-link">';
                 echo '<div class="album">';
-                    echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Song Cover">';
+                    echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Album Cover">';
                     echo '<div>';
                         echo '<h2>' . htmlspecialchars($row['judul']) . '</h2>';
                         echo '<div class="album-details">';
