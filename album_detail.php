@@ -1,5 +1,5 @@
 <?php 
-    // Access via localhost:8080/album_detai.php
+    // Access via localhost:8080/album_detail.php
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     $pdo = $connect_db();
     include 'navbar.php';
@@ -85,13 +85,15 @@
                             <span>Edit</span>
                         </button>
                     </a>
-                    <form method="post" action="album_delete.php">
-                        <input type="hidden" name="album_id" value="<?php echo htmlspecialchars($row['album_id']); ?>">
-                        <button type="submit" onclick="return confirm('Are you sure you want to delete this album?');" class="btn-delete">
-                            <img src="./public/image/delete.png" alt="Delete Icon"/>
-                            <span>Delete</span>
-                        </button> 
-                    </form>
+                    <?php if (count($songs) === 0): ?>
+                        <form method="post" action="album_delete.php">
+                            <input type="hidden" name="album_id" value="<?php echo htmlspecialchars($row['album_id']); ?>">
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this album?');" class="btn-delete">
+                                <img src="./public/image/delete.png" alt="Delete Icon"/>
+                                <span>Delete</span>
+                            </button> 
+                        </form>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         </div>
