@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
+        echo 'Unauthorized access';
+        exit;
+    }
     include 'navbar.php';
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     require 'vendor/autoload.php';

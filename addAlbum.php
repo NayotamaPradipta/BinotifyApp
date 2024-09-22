@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
+        echo 'Unauthorized access';
+        exit;
+    }
+    ob_start();
     include 'navbar.php';
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     require 'vendor/autoload.php';
@@ -28,7 +34,8 @@
                 ':tanggal_terbit' => $release_date, 
                 ':genre' => $genre
             ])) {
-                echo 'Album successfully added'; 
+                header('Location: album.php');
+                exit;
             } else { 
                 echo "Error adding album to the database";
             }
@@ -36,6 +43,7 @@
             echo "Error uploading files.";
         }
     }
+    ob_end_flush();
 ?>
 
 
