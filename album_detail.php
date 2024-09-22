@@ -31,6 +31,9 @@
         $seconds = $seconds % 60; 
         return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     }
+    
+    $isAdmin = isset($_SESSION['username']) && $_SESSION['username'] === 'admin';
+
 ?> 
 
 <!DOCTYPE html>
@@ -74,6 +77,23 @@
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php if ($isAdmin): ?>
+                <div class="admin-action">
+                    <a href="album_edit.php?id=<?php echo htmlspecialchars($row['album_id']); ?>" > 
+                        <button class="btn-edit">
+                            <img src="./public/image/edit.png" alt="Edit Album"/>
+                            <span>Edit</span>
+                        </button>
+                    </a>
+                    <form method="post" action="album_delete.php">
+                        <input type="hidden" name="album_id" value="<?php echo htmlspecialchars($row['album_id']); ?>">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this album?');" class="btn-delete">
+                            <img src="./public/image/delete.png" alt="Delete Icon"/>
+                            <span>Delete</span>
+                        </button> 
+                    </form>
+                </div>
+            <?php endif; ?>
         </div>
 
     </div>
