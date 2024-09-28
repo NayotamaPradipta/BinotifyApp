@@ -58,7 +58,7 @@
                 
             </div>
             <h2>Songs</h2>
-            <div class="song-container">
+            <div class="song-container" id="album-song-container">
                 <?php 
                     if (!$songs) { 
                         echo '<h3>No songs in the album</h3>';
@@ -79,6 +79,10 @@
             </div>
             <?php if ($isAdmin): ?>
                 <div class="admin-action">
+                    <button class="btn-edit" id="add-song-button">
+                        <img src="./public/image/add.png" alt="Edit Song List"/>
+                        <span>Add Song</span>
+                    </button>
                     <a href="album_edit.php?id=<?php echo htmlspecialchars($row['album_id']); ?>" > 
                         <button class="btn-edit">
                             <img src="./public/image/edit.png" alt="Edit Album"/>
@@ -96,9 +100,64 @@
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
+            <div class="song-container" id="add-song-container"></div>
         </div>
-
     </div>
+    <script>
+        document.getElementById('add-song-button').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_songs_to_add.php?id=<?php echo intval($id); ?>', true);
+            xhr.onreadystatechange = function () { 
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('add-song-container').innerHTML = xhr.responseText;
+                    addSongButtonsEventListeners();
+                } 
+            };
+            xhr.send();
+        });
+        function addSongButtonsEventListeners() {
+            var addButtons = document.getElementsByClassName('add-song-to-album-button');
+            for (var i = 0; i < addButtons.length; i++) {
+                addButtons[i].addEventListener('click', function() {
+                    var songId = this.getAttribute('data-song-id'); // Get the song ID
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'add_song_to_album.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.status === 'success') {
+                                // Remove the song from the available list
+                                var songDiv = document.getElementById('song-to-add-' + songId);
+                                songDiv.parentNode.removeChild(songDiv);
+                                
+                                // Add the song to the album's song list
+                                var albumSongContainer = document.getElementById('album-song-container');
+                                var songHtml = '<div class="song">' +
+                                    '<a href="song_detail.php?id=' + response.song.song_id + '">' +
+                                        '<div>' +
+                                            '<span class="song-title">' + response.song.judul + '</span>' +
+                                            '<div class="song-details">' +
+                                                '<span>' + response.song.penyanyi + '</span>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</a>' +
+                                '</div>';
+                                albumSongContainer.innerHTML += songHtml;
+                            } else {
+                                alert('Failed to add song: ' + response.message);
+                            }
+                        }
+                    };
+
+                    xhr.send('id=<?php echo intval($id); ?>&song_id=' + songId);
+                });
+            }
+        }
+
+    </script>
 </body>
 
 </html>

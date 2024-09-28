@@ -129,6 +129,68 @@ a {
     color: black;
 }
 
+.song-to-add-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #444; 
+    background-color: #333; 
+    border-radius: 1em;
+}
+
+.song-to-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #555; 
+    border-radius: 1em;
+    background-color: #212121; 
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.song-to-add:hover {
+    background-color: #333; 
+}
+
+.song-title .singer {
+    font-family: 'spotify-circular-b', Arial, sans-serif;
+    font-size: 1.2em;
+    color: #FFFFFF; 
+    flex-grow: 1;
+    margin-right: 20px;
+}
+.song-title {
+    padding-right: 10px;
+}
+
+.singer {
+    padding-left: 10px;
+}
+
+.add-song-to-album-button {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #1db954; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'spotify-circular-b', Arial, sans-serif;
+    position: absolute;
+    right: 15px;
+    transition: background-color 0.3s;
+}
+
+.add-song-to-album-button:hover {
+    background-color: #1aa34a;
+}
+
+.add-song-to-album-button {
+    margin-left: 20px;
+}
+
 @media (max-width: 768px) { 
     .album-detail { 
         flex-direction: column;
