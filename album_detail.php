@@ -153,7 +153,12 @@
                                 if (deleteButton){
                                     deleteButton.remove();
                                 }
-                                
+
+                                var totalDurationSpan = document.querySelector('.album-details span:nth-child(3)');
+                                if (totalDurationSpan && response.new_album_total_duration){
+                                    totalDurationSpan.innerHTML = formatDuration(response.new_album_total_duration);
+                                }
+
                             } else {
                                 alert('Failed to add song: ' + response.message);
                             }
@@ -163,6 +168,15 @@
                     xhr.send('id=<?php echo intval($id); ?>&song_id=' + songId);
                 });
             }
+        }
+
+        function formatDuration(seconds){
+            var hours = Math.floor(seconds / 3600);
+            var minutes = Math.floor((seconds % 3600) / 60);
+            seconds = seconds % 60;
+            return hours > 0
+                ? hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds
+                : minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
         }
 
     </script>
