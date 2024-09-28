@@ -1,5 +1,4 @@
 <?php 
-    // Access via localhost:8080/album_detail.php
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     $pdo = $connect_db();
     include 'navbar.php';
@@ -61,7 +60,7 @@
             <div class="song-container" id="album-song-container">
                 <?php 
                     if (!$songs) { 
-                        echo '<h3>No songs in the album</h3>';
+                        echo '<h3 id="no-songs-message">No songs in the album</h3>';
                     }
                 ?>
                 <?php foreach ($songs as $song): ?>
@@ -92,7 +91,7 @@
                     <?php if (count($songs) === 0): ?>
                         <form method="post" action="album_delete.php">
                             <input type="hidden" name="album_id" value="<?php echo htmlspecialchars($row['album_id']); ?>">
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this album?');" class="btn-delete">
+                            <button id="delete-album-button" type="submit" onclick="return confirm('Are you sure you want to delete this album?');" class="btn-delete">
                                 <img src="./public/image/delete.png" alt="Delete Icon"/>
                                 <span>Delete</span>
                             </button> 
@@ -119,7 +118,7 @@
             var addButtons = document.getElementsByClassName('add-song-to-album-button');
             for (var i = 0; i < addButtons.length; i++) {
                 addButtons[i].addEventListener('click', function() {
-                    var songId = this.getAttribute('data-song-id'); // Get the song ID
+                    var songId = this.getAttribute('data-song-id'); 
 
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', 'add_song_to_album.php', true);
@@ -129,11 +128,9 @@
                         if (xhr.readyState === 4 && xhr.status === 200) {
                             var response = JSON.parse(xhr.responseText);
                             if (response.status === 'success') {
-                                // Remove the song from the available list
                                 var songDiv = document.getElementById('song-to-add-' + songId);
                                 songDiv.parentNode.removeChild(songDiv);
-                                
-                                // Add the song to the album's song list
+
                                 var albumSongContainer = document.getElementById('album-song-container');
                                 var songHtml = '<div class="song">' +
                                     '<a href="song_detail.php?id=' + response.song.song_id + '">' +
@@ -146,6 +143,17 @@
                                     '</a>' +
                                 '</div>';
                                 albumSongContainer.innerHTML += songHtml;
+                                
+                                var noSongsMessage = document.getElementById('no-songs-message');
+                                if (noSongsMessage) {
+                                    noSongsMessage.remove();
+                                }
+
+                                var deleteButton = document.getElementById('delete-album-button');
+                                if (deleteButton){
+                                    deleteButton.remove();
+                                }
+                                
                             } else {
                                 alert('Failed to add song: ' + response.message);
                             }
