@@ -31,7 +31,7 @@
             echo '
                 <div class="user-list link-item">
                     <a href="./users.php" class="user-list-button">
-                        <img src="./public/image/user.png" alt="Add User" width="40" height="40"/>
+                        <img src="./public/image/user.png" alt="Add User" class="navbar-img"/>
                         <span>Users</span>
                     </a>
                 </div>
@@ -41,14 +41,14 @@
         if ($requestUri == "index.php"|| $requestUri == "" || $requestUri == "search.php"){
             echo '
                 <div id="search-bar"> 
-                    <form action="./search.php" method="GET">
+                    <form action="./search.php" method="GET" id="search-form">
                         <input type="text" name="query" id="searchInput" placeholder="Search for songs...">
-                        <button type="submit">Search</button>
+                        <button id="search-button" type="submit"><img src="./public/image/search.png"/></button>
                     </form>
                 </div>
                 <div class="album-list link-item">
                     <a href="./album.php" class="album-list">
-                        <img src="./public/image/album.png" alt="Album List" width="40" height="40"/>  
+                        <img src="./public/image/album.png" alt="Album List" class="navbar-img"/>  
                         <span>Album</span>
                     </a>
                 </div>
@@ -69,13 +69,13 @@
                 '
                 <div class="add-song link-item">
                     <a href="addSong.php" class="add-song-button">
-                        <img src="./public/image/addSong.png" alt="Add Song" width="40" height="40"/>
+                        <img src="./public/image/addSong.png" alt="Add Song" class="navbar-img"/>
                         <span>Add Song</span>
                     </a>
                 </div>
                 <div class="add-album link-item">
                     <a href="addAlbum.php" class="add-album-button">
-                        <img src="./public/image/addAlbum.png" alt="Add Album" width="40" height="40"/>
+                        <img src="./public/image/addAlbum.png" alt="Add Album" class="navbar-img"/>
                         <span>Add Album</span>
                     </a>
                 </div>
@@ -84,7 +84,7 @@
             }
             echo 
             '<div class="user-info">
-                <p class="user-name"> Hello, ' . htmlspecialchars($_SESSION['username']) .  '!</p>
+                <p class="user-name" id="user-text"> Hello, ' . htmlspecialchars($_SESSION['username']) .  '!</p>
                 <form action="logout.php" method="post" class="logout-form">
                     <button type="submit" class="logout-button">Logout</button>
                 </form>
