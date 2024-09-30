@@ -111,7 +111,7 @@
   font-size: 1.5vw;
 }
 
-.user-info {
+.user-logout {
   display: flex;
   align-items: center;
   justify-content: flex-end;
