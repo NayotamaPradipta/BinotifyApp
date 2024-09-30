@@ -101,6 +101,7 @@
     <meta charset="UTF-8">
     <title>Edit Song</title>
     <link rel="stylesheet" href="public/css/addSong.css" type="text/css">
+    <script src="./src/scripts/dateUtil.js"></script>
 </head>
 
 <body>
