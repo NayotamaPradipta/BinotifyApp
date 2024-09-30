@@ -10,6 +10,10 @@
     require 'vendor/autoload.php';
     $pdo = $connect_db();
 
+    $error_message = '';
+
+    $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
     if (!isset($_GET['id'])) { 
         echo 'No album ID provided'; 
         exit;
@@ -40,27 +44,33 @@
         }
 
         if (!empty($_FILES["cover-upload"]["tmp_name"])) {
-            move_uploaded_file($_FILES["cover-upload"]["tmp_name"], $cover_file);
+            $file_mime_type = mime_content_type($_FILES["cover-upload"]["tmp_name"]);
+            if (!in_array($file_mime_type, $allowed_mime_types)){
+                $error_message = "Invalid file type. Only images are allowed.";
+            } else {
+                move_uploaded_file($_FILES["cover-upload"]["tmp_name"], $cover_file);    
+            }
+            
+        }
+        if (empty($error_message)) {
+            $stmt = $pdo->prepare('UPDATE album SET penyanyi = :penyanyi, judul = :judul, genre = :genre, tanggal_terbit = :tanggal_terbit, image_path = :image_path WHERE album_id = :album_id');
+            if ($stmt->execute([
+                ':penyanyi' => $singer,
+                ':judul' => $album_title, 
+                'genre' => $genre,
+                'tanggal_terbit' => $release_date,
+                'image_path' => $cover_file,
+                'album_id' => $album_id 
+            ])) {
+                header('Location: album.php');
+                exit();
+            } else {
+                $error_message = "Error updating album in the database.";
+            }
         }
 
-        $stmt = $pdo->prepare('UPDATE album SET penyanyi = :penyanyi, judul = :judul, genre = :genre, tanggal_terbit = :tanggal_terbit, image_path = :image_path WHERE album_id = :album_id');
-        if ($stmt->execute([
-            ':penyanyi' => $singer,
-            ':judul' => $album_title, 
-            'genre' => $genre,
-            'tanggal_terbit' => $release_date,
-            'image_path' => $cover_file,
-            'album_id' => $album_id 
-        ])) {
-            header('Location: album.php');
-            exit();
-        } else {
-            echo "Error updating album in the database.";
-        }
     }
-
     ob_end_flush();
-
 ?>
 
 <!DOCTYPE html>
@@ -104,6 +114,11 @@
             </form>
         </div>
     </div>
+    <?php if (!empty($error_message)): ?>
+        <script>
+            alert("<?php echo $error_message; ?>");
+        </script>
+    <?php endif; ?>
 </body>
 
 

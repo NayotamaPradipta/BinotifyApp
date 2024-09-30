@@ -9,6 +9,11 @@
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     require 'vendor/autoload.php';
     $pdo = $connect_db(); 
+
+    $error_message = '';
+    
+    $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $album_title = htmlspecialchars($_POST['album-title']);
         $singer = htmlspecialchars($_POST['singer']);
@@ -22,26 +27,33 @@
             mkdir($target_cover_dir, 0777, true);
         }
 
-        if (move_uploaded_file($_FILES["cover-upload"]["tmp_name"], $cover_file)) {
-            $stmt = $pdo->prepare('INSERT INTO album (penyanyi, total_duration, judul, image_path, tanggal_terbit, genre)
-                                    VALUES (:penyanyi, :total_duration, :judul, :image_path, :tanggal_terbit, :genre)'
-                                 );
-            if ($stmt->execute([
-                ':penyanyi' => $singer, 
-                ':total_duration' => 0,
-                ':judul' => $album_title,
-                ':image_path' => $cover_file,
-                ':tanggal_terbit' => $release_date, 
-                ':genre' => $genre
-            ])) {
-                header('Location: album.php');
-                exit;
-            } else { 
-                echo "Error adding album to the database";
+        $file_mime_type = mime_content_type($_FILES["cover-upload"]["tmp_name"]);
+        if (in_array($file_mime_type, $allowed_mime_types)){
+
+            if (move_uploaded_file($_FILES["cover-upload"]["tmp_name"], $cover_file)) {
+                $stmt = $pdo->prepare('INSERT INTO album (penyanyi, total_duration, judul, image_path, tanggal_terbit, genre)
+                                        VALUES (:penyanyi, :total_duration, :judul, :image_path, :tanggal_terbit, :genre)'
+                                     );
+                if ($stmt->execute([
+                    ':penyanyi' => $singer, 
+                    ':total_duration' => 0,
+                    ':judul' => $album_title,
+                    ':image_path' => $cover_file,
+                    ':tanggal_terbit' => $release_date, 
+                    ':genre' => $genre
+                ])) {
+                    header('Location: album.php');
+                    exit;
+                } else { 
+                    $error_message = "Error adding album to the database";
+                }
+            } else {
+                $error_message = "Error uploading files.";
             }
         } else {
-            echo "Error uploading files.";
+            $error_message = "Invalid file type. Only images are allowed.";
         }
+
     }
     ob_end_flush();
 ?>
@@ -86,6 +98,11 @@
             </form>
         </div>
     </div>
+    <?php if (!empty($error_message)): ?>
+        <script>
+            alert("<?php echo $error_message; ?>");
+        </script>
+    <?php endif; ?>
 </body>
 
 
