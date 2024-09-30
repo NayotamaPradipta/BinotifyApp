@@ -22,18 +22,17 @@
                     echo '<h2>' . htmlspecialchars($row['user_id']) . '</h2>';
                 echo '</div>';
                 echo '<div class="user-detail">';
-                echo '<div class="user-info">';
-                    echo '<span class="label">Username:</span>';
-                    echo '<span class="value">' . htmlspecialchars($row['username']) . '</span>';
+                    echo '<div class="user-info">';
+                        echo '<span class="label">Username:</span>';
+                        echo '<span class="value">' . htmlspecialchars($row['username']) . '</span>';
+                    echo '</div>';
+                    echo '<div class="user-info">';
+                        echo '<span class="label">Email:</span>';
+                        echo '<span class="value">' . htmlspecialchars($row['email']) . '</span>';
+                    echo '</div>';
                 echo '</div>';
-                echo '<div class="user-info">';
-                    echo '<span class="label">Email:</span>';
-                    echo '<span class="value">' . htmlspecialchars($row['email']) . '</span>';
-                echo '</div>';
-            echo '</div>';
             echo '</div>';  
         }
-
     ?>
 </body>
 
