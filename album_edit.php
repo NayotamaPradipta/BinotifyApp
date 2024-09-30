@@ -79,6 +79,7 @@
     <meta charset="UTF-8">
     <title>Add New Album</title>
     <link rel="stylesheet" href="public/css/addAlbum.css" type="text/css">
+    <script src="./src/scripts/dateUtil.js"></script>
 </head>
 
 <body>
