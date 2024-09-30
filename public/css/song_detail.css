@@ -121,7 +121,7 @@ a {
     }
 
     .song-detail img {
-        width: 100%;
+        width: 60%;
     }
 
     .song-detail h2 {
@@ -130,5 +130,9 @@ a {
 
     .song-details {
         font-size: 1em;
+    }
+
+    .admin-action img {
+        width: 25%;
     }
 }
