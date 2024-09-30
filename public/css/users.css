@@ -1,0 +1,75 @@
+@font-face {
+    font-family: "spotify-circular-l";
+    src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2") format("woff2");
+}
+@font-face {
+    font-family: "spotify-circular-b";
+    src: url("https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2") format("woff2");
+}
+
+html, body {
+  background-color: #212121;
+  margin: 0;
+  padding: 0;
+}
+
+.users {
+    border: 1px solid #ddd;
+    margin: 2vh;
+    padding: 2vh 4vh;
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #333333;
+    flex-wrap: nowrap;
+}
+
+.user-id {
+    color: #ffffff;
+    font-family: "spotify-circular-b";
+    margin-right: 1vw;
+}
+
+.user-id h2 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.user-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info {
+    display: grid;
+    grid-template-columns: 150px auto;
+    color: #ffffff;
+}
+
+.label {
+    font-family: "spotify-circular-b";
+    font-size: 1.5em;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.value {
+    font-family: "spotify-circular-l";
+    text-align: left;
+    font-size: 1.5em;
+}
+
+@media (max-width: 768px) { 
+    .user-id h2 {
+        font-size: 2em;
+    }
+
+    .label, .value { 
+        font-size: 0.9em;
+    }
+    
+    .user-info {
+        grid-template-columns: 120px 1fr;
+    }
+}

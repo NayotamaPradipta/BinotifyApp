@@ -42,6 +42,7 @@
     } else {
         $audio_disabled = false; 
     }
+    $isAdmin = isset($_SESSION['username']) && $_SESSION['username'] === 'admin';
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +79,25 @@
                         Your browser does not support the audio element.
                     </audio>
                 <?php endif; ?>
+                <?php if ($isAdmin): ?>
+                    <div class="admin-action">
+                        <a href="song_edit.php?id=<?php echo htmlspecialchars($row['song_id']); ?>" >
+                            <button class="btn-edit">
+                                <img src="./public/image/edit.png" alt="Edit Icon"/>
+                                <span>Edit</span>
+                            </button>
+                        </a>
+                        <form method="post" action="song_delete.php">
+                            <input type="hidden" name="song_id" value="<?php echo htmlspecialchars($row['song_id']); ?>">
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this song?');" class="btn-delete">
+                                <img src="./public/image/delete.png" alt="Delete Icon"/>
+                                <span>Delete</span>
+                            </button>
+                        </form>
+                    </div>
+                <?php endif; ?> 
             </div>
+
         </div>
     </div>
 </body>

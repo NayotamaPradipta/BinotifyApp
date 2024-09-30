@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/navbar.css" type="text/css">
     <link rel="stylesheet" href="public/css/album.css" type="text/css">
-    <title>Binotify App</title>
+    <title>Albums</title>
 </head>
 <body>
     <?php 
@@ -19,7 +19,7 @@
         while ($row = $stmt->fetch()){
             echo '<a href="album_detail.php?id=' . htmlspecialchars($row['album_id']) . '" class="album-link">';
                 echo '<div class="album">';
-                    echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Song Cover">';
+                    echo '<img src="' . htmlspecialchars($row['image_path']) . '" alt="Album Cover">';
                     echo '<div>';
                         echo '<h2>' . htmlspecialchars($row['judul']) . '</h2>';
                         echo '<div class="album-details">';

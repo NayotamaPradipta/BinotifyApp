@@ -22,6 +22,10 @@
     $stmt->bindParam(':genre', $genre_filter);
     $stmt->execute(); 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmt_genres = $pdo->query('SELECT DISTINCT genre FROM song ORDER BY genre');
+    $genres = $stmt_genres->fetchAll(PDO::FETCH_ASSOC);
+
     echo "<h2 id='search-text'>Search Results for '" . htmlspecialchars($search_query) . "'</h2>";
 ?> 
 
@@ -41,8 +45,12 @@
         <input type="hidden" name="query" value="<?php echo htmlspecialchars($search_query); ?>">
         <select name="genre">
             <option value="">All Genres</option>
-            <option value="Phonk" <?php if ($genre_filter == 'Phonk') echo 'selected'; ?>>Phonk</option>
-            <option value="Electronic" <?php if ($genre_filter == 'Electronic') echo 'selected'; ?>>Electronic</option>
+            <?php foreach ($genres as $genre): ?>
+                <option value="<?php echo htmlspecialchars($genre['genre']); ?>" 
+                    <?php if (isset($genre_filter) && $genre_filter == $genre['genre']) echo 'selected'; ?>>
+                    <?php echo htmlspecialchars($genre['genre']); ?>
+                </option>  
+            <?php endforeach; ?>
         </select>
         <select name="sort_by">
             <option value="judul" <?php if ($sort_by == 'judul') echo 'selected'; ?>>Sort by Title</option>

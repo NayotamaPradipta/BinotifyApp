@@ -26,8 +26,8 @@ The database used in this project is PostGreSQL, so make sure to also install it
         define('DB_NAME', '<db_name>');
     ?>
 ```
-The default value of DB_USERNAME is `postgres`. Change `<password>` with your database password. Make sure to create a new database and change the `<db_name>` with the name of the database you've just created. Run `http://localhost:<port>/BinotifyApp/src/db/db_init.php` to initialize the database connection and fill the database with dummy data. 
-
+The default value of DB_USERNAME is `postgres`. Change `<password>` with your database password. Make sure to create a new database and change the `<db_name>` with the name of the database you've just created. Run `http://localhost:<port>/BinotifyApp/src/db/db_init.php` to initialize the database connection and fill the database with dummy data. <br>
+Finally, execute `composer install` in the root folder
 
 
 
