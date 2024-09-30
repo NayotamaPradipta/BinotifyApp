@@ -32,7 +32,7 @@
                 <div class="user-list link-item">
                     <a href="./users.php" class="user-list-button">
                         <img src="./public/image/user.png" alt="Add User" class="navbar-img"/>
-                        <span>Users</span>
+                        <span id="icon-text">Users</span>
                     </a>
                 </div>
             ';
@@ -49,7 +49,7 @@
                 <div class="album-list link-item">
                     <a href="./album.php" class="album-list">
                         <img src="./public/image/album.png" alt="Album List" class="navbar-img"/>  
-                        <span>Album</span>
+                        <span id="icon-text">Album</span>
                     </a>
                 </div>
             ';
@@ -70,20 +70,20 @@
                 <div class="add-song link-item">
                     <a href="addSong.php" class="add-song-button">
                         <img src="./public/image/addSong.png" alt="Add Song" class="navbar-img"/>
-                        <span>Add Song</span>
+                        <span id="icon-text">Add Song</span>
                     </a>
                 </div>
                 <div class="add-album link-item">
                     <a href="addAlbum.php" class="add-album-button">
                         <img src="./public/image/addAlbum.png" alt="Add Album" class="navbar-img"/>
-                        <span>Add Album</span>
+                        <span id="icon-text">Add Album</span>
                     </a>
                 </div>
 
                 ';
             }
             echo 
-            '<div class="user-info">
+            '<div class="user-logout">
                 <p class="user-name" id="user-text"> Hello, ' . htmlspecialchars($_SESSION['username']) .  '!</p>
                 <form action="logout.php" method="post" class="logout-form">
                     <button type="submit" class="logout-button">Logout</button>
