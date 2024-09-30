@@ -10,6 +10,9 @@
     require 'vendor/autoload.php';
     $pdo = $connect_db();
     $stmt = $pdo->query('SELECT judul FROM album');
+
+    $error_message = '';
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $album = htmlspecialchars($_POST['album']);
         $song_title = htmlspecialchars($_POST['song-title']);
@@ -22,52 +25,68 @@
         $audio_file = $target_audio_dir . basename($_FILES["audio-upload"]["name"]);
         $cover_file = $target_cover_dir . basename($_FILES["cover-upload"]["name"]);
 
+        $allowed_audio_types = ['audio/mpeg', 'audio/wav', 'audio/mp3'];
+        $allowed_image_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
         if (!is_dir($target_audio_dir)){
             mkdir($target_audio_dir, 0777, true);
         }
         if (!is_dir($target_cover_dir)){
             mkdir($target_cover_dir, 0777, true);
         }
-        if (move_uploaded_file($_FILES["audio-upload"]["tmp_name"], $audio_file) &&
-            move_uploaded_file($_FILES["cover-upload"]["tmp_name"], $cover_file)) {
-            
-            $stmt_album = $pdo->prepare('SELECT album_id, total_duration FROM album WHERE judul = :judul');
-            $stmt_album->execute([':judul' => $album]);
-            $album_row = $stmt_album->fetch(PDO::FETCH_ASSOC);
-            $album_id = $album_row['album_id'];
-            $current_total_duration = $album_row['total_duration'];
 
-            $getID3 = new getID3;
-            $file_info = $getID3->analyze($audio_file);
-            $duration = isset($file_info['playtime_seconds']) ? round($file_info['playtime_seconds']) : 0;
+        $audio_mime_type = mime_content_type($_FILES["audio-upload"]["tmp_name"]);
+        if (!in_array($audio_mime_type, $allowed_audio_types)) {
+            $error_message .= "Invalid audio file type. Only MP3, WAV, and MPEG files are allowed.";
+        }
 
-            $stmt = $pdo->prepare('INSERT INTO song (judul, penyanyi, tanggal_terbit, genre, duration, audio_path, image_path, album_id) 
-            VALUES (:judul, :penyanyi, :tanggal_terbit, :genre, :duration, :audio_path, :image_path, :album_id)');
+        $cover_mime_type = mime_content_type($_FILES["cover-upload"]["tmp_name"]);
+        if (!in_array($cover_mime_type, $allowed_image_types)) {
+            $error_message .= "\n Invalid image file type. Only JPEG, PNG, GIF, and WebP files are allowed.";
+        }
 
-            if ($stmt->execute([
-                ':judul' => $song_title,
-                ':penyanyi' => $singer,
-                ':tanggal_terbit' => $release_date,
-                ':genre' => $genre,
-                ':duration' => $duration,
-                ':audio_path' => $audio_file,
-                ':image_path' => $cover_file,
-                ':album_id' => $album_id
-            ])) {
-                $new_total_duration = $current_total_duration + $duration;
+        if (empty($error_message)) {
+            if (move_uploaded_file($_FILES["audio-upload"]["tmp_name"], $audio_file) &&
+                move_uploaded_file($_FILES["cover-upload"]["tmp_name"], $cover_file)) {
+                
+                $stmt_album = $pdo->prepare('SELECT album_id, total_duration FROM album WHERE judul = :judul');
+                $stmt_album->execute([':judul' => $album]);
+                $album_row = $stmt_album->fetch(PDO::FETCH_ASSOC);
+                $album_id = $album_row['album_id'];
+                $current_total_duration = $album_row['total_duration'];
 
-                $update_album_stmt = $pdo->prepare('UPDATE album SET total_duration = :new_total_duration WHERE album_id = :album_id');
-                $update_album_stmt->execute([
-                    ':new_total_duration' => $new_total_duration,
+                $getID3 = new getID3;
+                $file_info = $getID3->analyze($audio_file);
+                $duration = isset($file_info['playtime_seconds']) ? round($file_info['playtime_seconds']) : 0;
+
+                $stmt = $pdo->prepare('INSERT INTO song (judul, penyanyi, tanggal_terbit, genre, duration, audio_path, image_path, album_id) 
+                VALUES (:judul, :penyanyi, :tanggal_terbit, :genre, :duration, :audio_path, :image_path, :album_id)');
+
+                if ($stmt->execute([
+                    ':judul' => $song_title,
+                    ':penyanyi' => $singer,
+                    ':tanggal_terbit' => $release_date,
+                    ':genre' => $genre,
+                    ':duration' => $duration,
+                    ':audio_path' => $audio_file,
+                    ':image_path' => $cover_file,
                     ':album_id' => $album_id
-                ]);
-                header('Location: index.php');
-                exit();
+                ])) {
+                    $new_total_duration = $current_total_duration + $duration;
+
+                    $update_album_stmt = $pdo->prepare('UPDATE album SET total_duration = :new_total_duration WHERE album_id = :album_id');
+                    $update_album_stmt->execute([
+                        ':new_total_duration' => $new_total_duration,
+                        ':album_id' => $album_id
+                    ]);
+                    header('Location: index.php');
+                    exit();
+                } else {
+                    echo "Error adding song to the database.";
+                }
             } else {
-                echo "Error adding song to the database.";
+                echo "Error uploading files.";
             }
-        } else {
-            echo "Error uploading files.";
         }
     }
     ob_end_flush();
@@ -126,7 +145,11 @@
                     <button type="submit">Add Song</button>
                 </div>
             </form>
-
+            <?php if (!empty($error_message)): ?>
+                <script>
+                    alert("<?php echo addslashes(str_replace(array("\r", "\n"), '', htmlspecialchars($error_message))); ?>");
+                </script>
+            <?php endif; ?>
         </div>
     </div>
 
