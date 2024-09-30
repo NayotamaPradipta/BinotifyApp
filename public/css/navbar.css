@@ -16,9 +16,14 @@
 }
 
 .logo-img {
-  width: 5vw;
+  width: 4vw;
   height: auto;
   margin-right: 1vw;
+}
+
+.navbar-img {
+  width: 4vw;
+  height: auto;
 }
 
 .container-navbar {
@@ -28,23 +33,46 @@
   padding: 0.5vh 2vw;
   background-color: #f8f8f8;
   border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+}
+
+#search-form {
+  display: flex;
+  align-items: center;
+}
+
+#search-bar {
+  align-items: center;
+  margin-left: 1vw;
+  display: flex;
+  height: 4vh
 }
 
 #search-bar input[type="text"] {
-  width: 30vw;
-  height: 3vh;
+  width: 25vw;
+  height: 4vh;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 #search-bar button { 
-  width: 5vw;
-  height: 3vh;
-  border: 1px solid #ccc;;
-  border-radius: 5px;
+  width: 4vh;
+  height: 4vh;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
   background-color: #1db954;
-  color: white; 
   cursor: pointer; 
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+#search-bar button img { 
+  height: 80%;
+  width: auto;
 }
 
 #search-bar button:hover { 
@@ -83,9 +111,10 @@
   font-size: 1.5vw;
 }
 
-.user-info {
+.user-logout {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .user-name { 
@@ -94,18 +123,42 @@
   font-family: "spotify-circular-b", Arial, sans-serif;
 }
 
+.link-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color:#333;
+  text-decoration: none;
+}
+
+.link-item span {
+  margin-top: 1px;
+}
+
+
 @media (max-width: 768px) {
   .logo-img {
     width: 10vw;
   }
+  .navbar-img {
+    width: 5vw; 
+  }
   #binotify-title {
-    font-size: 4vw;
+    display: none;
+  }
+  #user-text{
+    display: none;
+  }
+  #icon-text {
+    display: none;
   }
   .login-button {
     font-size: 4vw;
-    padding: 1vh 3vw; /* Adjust padding for better alignment on smaller screens */
+    padding: 1vh 3vw; 
   }
-  #search-bar button {
-    width: 15vw;
+  #search-button img {
+    width: 5vw;
+    height: 5vw;
   }
 }

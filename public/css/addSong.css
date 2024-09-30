@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'spotify-circular-l';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Light.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'spotify-circular-b';
+    src: url('https://encore.scdn.co/1.2.3/CircularSpotify-UI-Latin-OS2v3-Bold.woff2') format('woff2');
+}
+
+html, body { 
+    background-color: #212121;
+    margin: 0; 
+    padding: 0;
+    font-family: 'spotify-circular-l', Arial, sans-serif;
+    color: #FFFFFF;
+    height: 100%;
+}
+
+h2 {
+    font-family: 'spotify-circular-b';
+}
+
+.add-song-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+.add-song-form {
+    gap: 2em;
+    margin: 1vh 0;
+    background-color: #333333;
+    border-radius: 1em;
+    box-shadow: 0 0 10 px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    text-decoration: none;
+    width: 400px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group {
+    margin-bottom: 1vh;
+}
+
+.input-group label {
+    display: block;
+    font-family: 'spotify-circular-b';
+    margin-bottom: 0.5vh;
+}
+
+.input-group select { 
+    box-sizing: border-box;
+    transition: border-color  0.3s;
+}
+
+.input-group input[type="file"] {
+    padding: 3px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1db954;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'spotify-circular-b';
+}

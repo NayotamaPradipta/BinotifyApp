@@ -71,15 +71,6 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <div class="forgot">
-                <section>
-                    <input type="checkbox" id="check">
-                    <label for="check">Remember me</label></label>
-                </section>
-                <section>
-                    <a href="#">Forgot password?</a>
-                </section>
-            </div>
             <div>
                 <button type="submit">Login</button>
             </div>
