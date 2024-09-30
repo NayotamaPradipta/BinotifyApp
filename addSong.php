@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     session_start();
     if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
         echo 'Unauthorized access';
@@ -60,6 +61,8 @@
                     ':new_total_duration' => $new_total_duration,
                     ':album_id' => $album_id
                 ]);
+                header('Location: index.php');
+                exit();
             } else {
                 echo "Error adding song to the database.";
             }
@@ -67,6 +70,7 @@
             echo "Error uploading files.";
         }
     }
+    ob_end_flush();
 ?>
 
 <!DOCTYPE html> 
