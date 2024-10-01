@@ -1,5 +1,6 @@
 <?php
     include "navbar.php";
+    include "pagination.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +16,14 @@
     <?php 
         ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
         $pdo = $connect_db();
-        $stmt = $pdo->query('SELECT user_id, username, email FROM binotify_user ORDER BY user_id ASC');
-        while ($row = $stmt->fetch()){
+
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+        $pagination = paginate($pdo, 'binotify_user', 'user_id ASC', $page);
+        $users = $pagination['items'];
+        $total_pages = $pagination['total_pages'];
+        $current_page = $pagination['current_page'];
+        foreach ($users as $row){
             echo '<div class="users">';
                 echo '<div class="user-id">';
                     echo '<h2>' . htmlspecialchars($row['user_id']) . '</h2>';
@@ -34,6 +41,23 @@
             echo '</div>';  
         }
     ?>
+<div class="pagination">
+    <?php 
+    $start_page = max(1, $current_page - 1); 
+    $end_page = min($total_pages, $current_page + 1);
+
+    if ($current_page == 1) {
+        $end_page = min($total_pages, 3);
+    } elseif ($current_page == $total_pages) {
+        $start_page = max(1, $total_pages - 2); 
+    }
+
+    for ($i = $start_page; $i <= $end_page; $i++): ?>
+        <a href="?page=<?php echo $i; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>>
+            <?php echo $i; ?>
+        </a>
+    <?php endfor; ?>
+</div>
 </body>
 
 </html>
