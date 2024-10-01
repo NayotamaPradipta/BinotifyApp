@@ -60,6 +60,33 @@ html, body {
     font-size: 1.5em;
 }
 
+.pagination {
+    text-align: center;
+    margin-top: 2vh;
+}
+
+.pagination a {
+    font-family: 'spotify-circular-l';
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: #444;
+    padding: 10px 15px;
+    margin: 0 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #888;
+}
+
+.pagination a.active { 
+    background-color: #1db954;
+    color: white;
+    font-family: 'spotify-circular-b';
+}
+
 @media (max-width: 768px) { 
     .user-id h2 {
         font-size: 2em;
@@ -71,5 +98,10 @@ html, body {
     
     .user-info {
         grid-template-columns: 120px 1fr;
+    }
+
+    .pagination a {
+        font-size: 1em;
+        padding: 8px 12px;
     }
 }
