@@ -53,6 +53,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="public/css/login.css">
+    <script>
+function validatePassword() {
+    const password = document.getElementById('password').value;
+
+    // Regular expression untuk validasi password
+    const regex = /^(?=.*[0-9!@#\$%\^&\*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+    if (!regex.test(password)) {
+        alert('Password harus terdiri dari minimal 8 karakter, mengandung setidaknya satu angka atau simbol, satu huruf besar, dan satu huruf kecil.');
+        return false; // Mencegah form submit jika password tidak valid
+    }
+
+    return true; // Jika password valid, form dapat disubmit
+}
+</script>
 </head>
 <body>
 

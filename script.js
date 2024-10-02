@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function(){
         const xhr = new XMLHttpRequest(); 
         xhr.open('POST', 'isUnique.php', true); 
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
         xhr.onreadystatechange = function(){ 
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200){ 
                 const response = JSON.parse(xhr.responseText);
@@ -76,3 +75,16 @@ document.addEventListener('DOMContentLoaded', function(){
         xhr.send(`${type}=${encodeURIComponent(value)}`);
     }
 });
+function validatePassword() {
+    const password = document.getElementById('password').value;
+    
+    // Regular expression untuk validasi password
+    const regex = /^(?=.*[0-9!@#\$%\^&\*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    
+    if (!regex.test(password)) {
+        alert('Password harus terdiri dari minimal 8 karakter, mengandung setidaknya satu angka atau simbol, satu huruf besar, dan satu huruf kecil.');
+        return false; // Mencegah form submit jika password tidak valid
+    }
+
+    return true; // Jika password valid, form dapat disubmit
+}
