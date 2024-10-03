@@ -1,7 +1,7 @@
 <?php
     function paginate($pdo, $table, $orderBy, $current_page) { 
         $current_page = max($current_page, 1); 
-        $items_per_page = 2; 
+        $items_per_page = 5; 
         $offset = ($current_page - 1) * $items_per_page;
 
         $stmt = $pdo->query("SELECT COUNT(*) FROM $table");
