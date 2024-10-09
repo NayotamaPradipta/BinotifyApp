@@ -78,19 +78,18 @@ document.addEventListener('DOMContentLoaded', function(){
 function validatePassword() {
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
-    const errorMessage = document.getElementById('message-pass');
+    const errorMessage = document.getElementById('message-register');
 
-    // Regular expression for password validation
     const regex = /^(?=.*[0-9!@#\$%\^&\*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
     if (!regex.test(password)) {
         errorMessage.textContent = 'Password must be at least 8 characters long, contain at least one number or symbol, one uppercase letter, and one lowercase letter.';
-        return false; // Prevent form submission if password is invalid
+        return false; 
     } else if (password !== confirmPassword) {
         errorMessage.textContent = 'Passwords do not match.';
-        return false; // Prevent form submission if passwords do not match
+        return false; 
     } else {
-        errorMessage.textContent = ''; // Clear the error message if valid
+        errorMessage.textContent = ''; 
         return true;
     }
 }
