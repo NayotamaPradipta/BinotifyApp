@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
-                <span id="message-pass" style="color: red;"></span>
+                <span id="message-register" style="color: red;"></span>
             </div>
             <div class="back-login">
                 <p>Already have an account?</p>
