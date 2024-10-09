@@ -1,5 +1,10 @@
 <?php
     ob_start();
+    session_start();
+    if (isset($_SESSION['username'])) {
+        header("Location: index.php");
+        exit();
+    }
     ['connect_db' => $connect_db] = require('./src/db/db_connect.php');
     $db = $connect_db();
     $error_message = '';
@@ -9,7 +14,6 @@
         $password = $_POST['password'];
         if ($username === 'admin') { 
             if ($password === 'admin') { 
-                session_start();
                 $_SESSION['username'] = $username;
                 header("Location: index.php");
                 exit();
@@ -28,7 +32,6 @@
 
                 if ($row) {
                     if (password_verify($password, $row['password'])) {
-                        session_start();
                         $_SESSION['username'] = $username;
                         header("Location: index.php");
                         exit();

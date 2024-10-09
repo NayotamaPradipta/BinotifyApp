@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function(){
         const xhr = new XMLHttpRequest(); 
         xhr.open('POST', 'isUnique.php', true); 
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
         xhr.onreadystatechange = function(){ 
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200){ 
                 const response = JSON.parse(xhr.responseText);
@@ -76,3 +75,21 @@ document.addEventListener('DOMContentLoaded', function(){
         xhr.send(`${type}=${encodeURIComponent(value)}`);
     }
 });
+function validatePassword() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const errorMessage = document.getElementById('message-register');
+
+    const regex = /^(?=.*[0-9!@#\$%\^&\*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+    if (!regex.test(password)) {
+        errorMessage.textContent = 'Password must be at least 8 characters long, contain at least one number or symbol, one uppercase letter, and one lowercase letter.';
+        return false; 
+    } else if (password !== confirmPassword) {
+        errorMessage.textContent = 'Passwords do not match.';
+        return false; 
+    } else {
+        errorMessage.textContent = ''; 
+        return true;
+    }
+}
