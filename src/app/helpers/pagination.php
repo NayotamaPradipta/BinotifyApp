@@ -15,9 +15,8 @@
         $stmt->execute();
 
         return [
-            'items' => $stmt->fetchAll(),
+            'items' => $stmt->fetchAll(PDO::FETCH_ASSOC),
             'total_pages' => $total_pages,
             'current_page' => $current_page
         ];
     }
-?>

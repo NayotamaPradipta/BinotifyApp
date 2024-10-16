@@ -9,7 +9,9 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - .:/var/www/html
+      - ./public:/var/www/html
+      - ./src:/var/www/src
+      - ./src/api:/var/www/html/api
     environment:
       - DOCKER_ENV=1
     depends_on:
