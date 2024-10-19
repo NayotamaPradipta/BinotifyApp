@@ -13,4 +13,24 @@ class UserController
     public function getPaginatedUsers($page){ 
         return paginate($this->userModel->getConnection(), 'binotify_user', 'user_id ASC', $page) ?: [];
     }
+
+    public function checkAvailability($type, $value){ 
+        if ($type === 'username') { 
+            return $this->userModel->userExistsByUsername($value);
+        } elseif ($type === 'email'){ 
+            return $this->userModel->userExistsByEmail($value);
+        }
+        return false;
+    }
+
+    public function registerUser($username, $email, $password){ 
+        if ($this->userModel->userExists($email, $username)){ 
+            return false;
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        return $this->userModel->createUser($username, $email, $hashedPassword);
+    }
+
 }
